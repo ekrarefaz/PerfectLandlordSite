@@ -45,7 +45,7 @@ export default {
                     console.log(response.data)
                     this.property = response.data
 
-                    document.title = this.property.address + ' | Djackets'
+                    document.title = this.property.address + ' | The Perfect Landlord'
                 })
                 .catch(error => {
                     console.log(error)

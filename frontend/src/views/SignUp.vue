@@ -6,6 +6,13 @@
 
                 <form @submit.prevent="submitForm">
                     <div class="field">
+                        <label>Email</label>
+                        <div class="control">
+                            <input type="text" class="input" v-model="email">
+                        </div>
+                    </div>
+
+                    <div class="field">
                         <label>Username</label>
                         <div class="control">
                             <input type="text" class="input" v-model="username">
@@ -53,6 +60,7 @@ export default {
     name: 'SignUp',
     data() {
         return {
+            email:'',
             username: '',
             password: '',
             password2: '',
@@ -62,6 +70,10 @@ export default {
     methods: {
         submitForm() {
             this.errors = []
+
+            if (this.username === '') {
+                this.errors.push('The email is missing')
+            }
 
             if (this.username === '') {
                 this.errors.push('The username is missing')
@@ -77,12 +89,13 @@ export default {
 
             if (!this.errors.length) {
                 const formData = {
+                    email: this.email,
                     username: this.username,
                     password: this.password
                 }
 
                 axios
-                    .post("/api/v1/users/", formData)
+                    .post("/users/", formData)
                     .then(response => {
                         toast({
                             message: 'Account created, please log in!',

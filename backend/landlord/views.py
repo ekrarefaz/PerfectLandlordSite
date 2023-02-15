@@ -28,6 +28,26 @@ class GroupList(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
+class PropertiesListRestricted(APIView):
+    """
+    API endpoint that allows properties that belongs to the user to be viewed and edited.
+    """
+
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        # Retrieve token
+        tokenString = request.headers['Authorization'].split()[1]
+
+        # Retrieve User
+        token = Token.objects.get(key=tokenString)
+        user = User.objects.get(username=token.user)
+
+        queryset = Property.objects.filter(landlord_id=user.id)
+        serializer = PropertySerializer(queryset, many=True)
+
+        return Response(serializer.data)
+    
 class PropertiesList(APIView):
     """
     API endpoint that allows properties that belongs to the user to be viewed and edited.
@@ -51,25 +71,4 @@ class PropertyDetails(APIView):
     def get(self, request, property_slug, format=None):
         property = self.get_object(property_slug)
         serializer = PropertySerializer(property)
-        return Response(serializer.data)
-
-
-class PropertiesList2(APIView):
-    """
-    API endpoint that allows properties that belongs to the user to be viewed and edited.
-    """
-
-    # permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, format=None):
-        # Retrieve token
-        tokenString = request.headers['Authorization'].split()[1]
-
-        # Retrieve User
-        token = Token.objects.get(key=tokenString)
-        user = User.objects.get(username=token.user)
-
-        queryset = Property.objects.filter(landlord_id=user.id)
-        serializer = PropertySerializer(queryset, many=True)
-
         return Response(serializer.data)

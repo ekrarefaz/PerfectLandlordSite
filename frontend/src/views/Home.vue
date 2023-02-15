@@ -50,7 +50,7 @@ export default {
   },
   mounted() {
     this.getMyProperties()
-    document.title = 'Home | Djackets'
+    document.title = 'Home | The Perfect Landlord'
   },
   methods: {
     async getMyProperties() {
