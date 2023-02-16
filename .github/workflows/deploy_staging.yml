@@ -19,7 +19,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.9]
+        python-version: [3.11]
 
     permissions:
       contents: 'read'
@@ -51,8 +51,14 @@ jobs:
     - name: Build Django Static files
       run: |
         cd backend
+        pip install -r requirements.txt 
         python3 manage.py collectstatic
         cd ..
+
+    - name: Collect website and django static into nginx container build
+      run: |
+        cp frontend/dist/* nginx/html/.
+        cp backend/
           
 #     # Build the Docker image
 #     - name: Build
