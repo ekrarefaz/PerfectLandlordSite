@@ -78,13 +78,17 @@ class ProfileView(APIView):
     API endpoint that allows all tenants to be viewed.
     """
 
-    # permission_classes = [permissions.IsAuthenticated]
-
     def get(self, request, format=None):
+        # Retrieve token
+        tokenString = request.headers['Authorization'].split()[1]
+
+        # Retrieve User
+        token = Token.objects.get(key=tokenString)
+        user = User.objects.get(username=token.user)
 
         # Retrieve profile of current user
-        query = Profile.objects.get(user=request.user)
-        serializer = ProfileSerializer(query, context={'request': request})
+        query = Profile.objects.get(user=user)
+        serializer = ProfileSerializer(query)
 
         return Response(serializer.data)
 

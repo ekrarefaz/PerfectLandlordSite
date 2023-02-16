@@ -15,14 +15,15 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'groups']
+        fields = ['id', 'username', 'email', 'groups', 'first_name', 'last_name']
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer()
     
     class Meta:
         model = Profile
-        fields = ['user', 'bio', 'location', 'birth_date']
+        fields = ['user', 'bio', 'location', 'birth_date', 'get_image',
+            'get_thumbnail', 'get_full_name']
 
 class PropertySerializer(serializers.ModelSerializer):
     class Meta:
