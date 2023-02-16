@@ -1,34 +1,6 @@
 <template>
+  <Navbar/>
   <div id="wrapper">
-    <nav class="navbar is-dark">
-      <div class="navbar-brand">
-        <router-link to="/" class="navbar-item"><strong>The Perfect Landlord</strong></router-link>
-
-        <a class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu" @click="showMobileMenu = !showMobileMenu">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-
-      <div class="navbar-menu" id="navbar-menu" v-bind:class="{'is-active': showMobileMenu }">
-        <div class="navbar-end">
-          <router-link to="/properties" class="navbar-item">Properties</router-link>
-
-          <div class="navbar-item">
-            <div class="buttons">
-              <router-link to="/log-in" class="button is-light">Log in</router-link>
-
-              <router-link to="/profile" class="button is-success">
-                <span class="icon"><i class="fas fa-user"></i></span>
-                <span>Profile</span>
-              </router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-
     <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
       <div class="lds-dual-ring"></div>
     </div>
@@ -45,24 +17,23 @@
 
 <script>
 import axios from 'axios'
+import Navbar from './components/LandingNavbar.vue'
 
 export default {
-  data() {
-    return {
-      showMobileMenu: false,
-    }
-  },
-  beforeCreate() {
-    this.$store.commit('initialize')
-
-    const token = this.$store.state.token
-
-    if (token) {
-        axios.defaults.headers.common['Authorization'] = "Token " + token
-    } else {
-        axios.defaults.headers.common['Authorization'] = ""
-    }
-  }
+    data() {
+        return {};
+    },
+    beforeCreate() {
+        this.$store.commit("initialize");
+        const token = this.$store.state.token;
+        if (token) {
+            axios.defaults.headers.common["Authorization"] = "Token " + token;
+        }
+        else {
+            axios.defaults.headers.common["Authorization"] = "";
+        }
+    },
+    components: { Navbar }
 }
 </script>
 

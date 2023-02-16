@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-
-import Property from '../views/Property.vue';
+import Properties from '../views/Properties.vue';
+import Property from '../views/PropertyDetails.vue';
 import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/LogIn.vue';
+import About from '../views/About.vue';
+import UserProfile from '../views/UserProfile.vue';
 
 const routes = [
   {
@@ -13,27 +15,45 @@ const routes = [
   },
   {
     path: '/sign-up',
-    name: 'SignUp',
+    name: 'signup',
     component: SignUp,
   },
   {
     path: '/log-in',
-    name: 'LogIn',
+    name: 'login',
     component: LogIn,
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+    component: About,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/properties',
+    name: 'properties',
+    component: Properties,
+    // meta:{
+    //   requiredLogin:true
+    // }
   },
   {
     path: '/:property_slug',
-    name: 'Property',
+    name: 'property-details',
     component: Property,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/profile',
+    name: 'profile',
+    component: UserProfile,
+    // meta:{
+    //   requiredLogin:true
+    // }
   },
 ];
 
@@ -41,5 +61,14 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+
+router.beforeEach((to,from,next) => {
+  if(to.matched.some(record=>record.meta.requiredLogin) && !store.state.isAuthenticated){
+    next('/login')
+  }
+  else{
+    next()
+  }
+})
 
 export default router;
