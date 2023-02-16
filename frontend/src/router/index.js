@@ -1,9 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Properties from '../views/Properties.vue';
-import Property from '../views/PropertyDetails.vue';
+import Property from '../views/Property.vue';
 import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/LogIn.vue';
+import Tenants from '../views/Tenants.vue';
 import About from '../views/About.vue';
 import UserProfile from '../views/UserProfile.vue';
 
@@ -40,6 +41,14 @@ const routes = [
     // }
   },
   {
+    path: '/tenants',
+    name: 'tenants',
+    component: Tenants,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
     path: '/:property_slug',
     name: 'property-details',
     component: Property,
@@ -62,13 +71,15 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to,from,next) => {
-  if(to.matched.some(record=>record.meta.requiredLogin) && !store.state.isAuthenticated){
-    next('/login')
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some((record) => record.meta.requiredLogin) &&
+    !store.state.isAuthenticated
+  ) {
+    next('/login');
+  } else {
+    next();
   }
-  else{
-    next()
-  }
-})
+});
 
 export default router;
