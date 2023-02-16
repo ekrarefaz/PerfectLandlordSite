@@ -17,4 +17,5 @@ urlpatterns = [
     # App API
     path('properties/', views.PropertiesListRestricted.as_view()),
     path('properties/<slug:property_slug>', views.PropertyDetails.as_view()),
+    path('tenants/', views.TenantsList.as_view()),
 ]

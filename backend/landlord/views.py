@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User, Group
+
 from django.http import Http404
 from rest_framework.response import Response
 
@@ -50,7 +51,7 @@ class PropertiesListRestricted(APIView):
     
 class PropertiesList(APIView):
     """
-    API endpoint that allows properties that belongs to the user to be viewed and edited.
+    API endpoint that allows all properties to be viewed.
     """
 
     # permission_classes = [permissions.IsAuthenticated]
@@ -72,3 +73,30 @@ class PropertyDetails(APIView):
         property = self.get_object(property_slug)
         serializer = PropertySerializer(property)
         return Response(serializer.data)
+    
+class TenantsList(APIView):
+    """
+    API endpoint that allows all tenants to be viewed.
+    """
+
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        # Retrieve all users
+        query = User.objects.all()
+        serializer = UserSerializer(query, many=True, context={'request': request})
+        users = serializer.data
+        tenants = []
+
+        # Retrieve only tenants users
+        for u in users:
+            for g in u['groups']:
+                if (g['name'] == 'tenant'):
+                    tenants.append(u)
+
+        return Response(tenants)
+
+        # Retrieve user groups
+        l = list()
+        for g in request.user.groups.all():
+            l.append(g.name)

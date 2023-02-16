@@ -3,6 +3,7 @@ from PIL import Image
 
 from django.core.files import File
 from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
@@ -57,3 +58,4 @@ class Property(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+    
