@@ -9,8 +9,8 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from rest_framework.authtoken.models import Token
 
-from .models import Property
-from .serializers import PropertySerializer, UserSerializer, GroupSerializer
+from .models import Property, Profile
+from .serializers import PropertySerializer, UserSerializer, GroupSerializer, ProfileSerializer
 
 class UserList(viewsets.ModelViewSet):
     """
@@ -19,7 +19,6 @@ class UserList(viewsets.ModelViewSet):
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
-
 
 class GroupList(viewsets.ModelViewSet):
     """
@@ -73,8 +72,28 @@ class PropertyDetails(APIView):
         property = self.get_object(property_slug)
         serializer = PropertySerializer(property)
         return Response(serializer.data)
-    
-class TenantsList(APIView):
+
+class ProfileView(APIView):
+    """
+    API endpoint that allows all tenants to be viewed.
+    """
+
+    def get(self, request, format=None):
+        # Retrieve token
+        tokenString = request.headers['Authorization'].split()[1]
+
+        # Retrieve User
+        token = Token.objects.get(key=tokenString)
+        user = User.objects.get(username=token.user)
+
+        # Retrieve profile of current user
+        query = Profile.objects.get(user=user)
+        serializer = ProfileSerializer(query)
+
+        return Response(serializer.data)
+
+
+class TenantProfilesList(APIView):
     """
     API endpoint that allows all tenants to be viewed.
     """
@@ -82,21 +101,16 @@ class TenantsList(APIView):
     # permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, format=None):
-        # Retrieve all users
-        query = User.objects.all()
-        serializer = UserSerializer(query, many=True, context={'request': request})
-        users = serializer.data
-        tenants = []
+        # Retrieve tenant group
+        tenantGroup = Group.objects.get(name='tenant')
 
         # Retrieve only tenants users
-        for u in users:
-            for g in u['groups']:
-                if (g['name'] == 'tenant'):
-                    tenants.append(u)
+        query = User.objects.filter(groups=tenantGroup)
+        serializer = UserSerializer(query, many=True, context={'request': request})
+        tenants = serializer.data
+        
+        # Retrieve from database
+        profileQuery = Profile.objects.filter(user__in=query)
+        profileSerializer = ProfileSerializer(profileQuery, many=True, context={'request': request})
 
-        return Response(tenants)
-
-        # Retrieve user groups
-        l = list()
-        for g in request.user.groups.all():
-            l.append(g.name)
+        return Response(profileSerializer.data)
