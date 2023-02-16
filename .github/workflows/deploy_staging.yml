@@ -7,11 +7,18 @@ on:
 #    branches: [ "main" ]
 
 env:
-  PROJECT_ID: ${{ secrets.PL_PROJECT }}
   REPOSITORY: perfect-landlord # TODO: update to Artifact Registry docker repository
   IMAGE: perfect-landlord
   
 jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        python-version: [3.9]
+        
   setup-build-publish-deploy:
     name: Setup, Build, Publish, and Deploy
     runs-on: ubuntu-latest
@@ -33,8 +40,8 @@ jobs:
     - name: Docker configuration
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKERHUB_USERNAME }}
-        password: ${{ secrets.DOCKERHUB_TOKEN }}
+        username: colonel13
+        password: dckr_pat_dhqpA6eqNlNAmGTqyxtfR-Cplqg
    
     - name: Build React Website
       run: |
