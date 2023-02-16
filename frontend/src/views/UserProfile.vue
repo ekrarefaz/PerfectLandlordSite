@@ -3,7 +3,7 @@
         <div class="cover-photo">
             <img src="../assets/logo.png" class="profile">
         </div>
-        <h3 class="profile-name">Ekrar</h3>
+        <h3 class="profile-name">Ekrar Efaz</h3>
         <p class="about">Tenant</p>
         <button class="btn">Logout</button>
     </div>
@@ -15,6 +15,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    color: black ;
 }
 
 body {
@@ -23,13 +24,14 @@ body {
     display: grid;
     place-items: center;
     font-family: Montserrat;
-    color: #b3afbf;
+
 }
 
 .card {
     padding: 15px;
     width: 350px;
     background: whitesmoke;
+
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.7);
@@ -59,7 +61,6 @@ body {
 .profile-name {
     font-size: 20px;
     margin: 25px 0 0 120px;
-    color: #fff;
 }
 
 .about {

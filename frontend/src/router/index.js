@@ -2,16 +2,29 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '../views/Home.vue';
 import Properties from '../views/Properties.vue';
 import Property from '../views/PropertyDetails.vue';
+import Tenants from '../views/Tenants.vue';
 import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/LogIn.vue';
 import About from '../views/About.vue';
 import UserProfile from '../views/UserProfile.vue';
+import TenantLanding from '../views/TenantLanding.vue';
+import LandlordLanding from '../views/LandlordLanding.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: Home,
+  },
+  {
+    path: '/tenant-home',
+    name: 'tenant-home',
+    component: TenantLanding,
+  },
+  {
+    path: '/landlord-home',
+    name: 'landlord-home',
+    component: LandlordLanding,
   },
   {
     path: '/sign-up',
@@ -43,6 +56,14 @@ const routes = [
     path: '/:property_slug',
     name: 'property-details',
     component: Property,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/tenants',
+    name: 'tenants',
+    component: Tenants,
     // meta:{
     //   requiredLogin:true
     // }
