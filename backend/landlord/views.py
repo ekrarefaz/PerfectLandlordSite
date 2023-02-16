@@ -95,8 +95,3 @@ class TenantsList(APIView):
                     tenants.append(u)
 
         return Response(tenants)
-
-        # Retrieve user groups
-        l = list()
-        for g in request.user.groups.all():
-            l.append(g.name)
