@@ -1,0 +1,58 @@
+version: '3'
+
+services:
+
+  redis:
+    image: redis:latest
+    expose:
+      - "6379"
+    ports:
+      - "6379:6379"
+    networks:
+      - app_network
+
+  pgdatabase:
+    image: postgres:13.1
+    ports:
+      - "5432:5432"
+    env_file:
+      - database.env # configure postgres
+    volumes:
+      - /opt/perfectlandlord/postgresql/data:/var/lib/postgresql/data/
+    networks:
+      - app_network
+
+
+  backend:
+    platform: linux/amd64
+    build: ./backend/
+    image: colonel13/perfect-landlord:app-prod
+    depends_on:
+      - redis
+    expose:
+      - "8000"
+    networks:
+      - app_network
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./env
+    volumes:
+      - /opt/persistent:/opt/persistent
+    working_dir: /data/backend
+    command: /usr/bin/daphne -b 0.0.0.0 -p 8000 theperfectlandlord.asgi:application
+
+  nginx:
+    platform: linux/amd64
+    build: ./nginx/
+    image: colonel13/perfect-landlord:nginx-prod
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+    networks:
+      - app_network
+
+
+networks:
+  app_network:

@@ -51,14 +51,15 @@ jobs:
     - name: Build Django Static files
       run: |
         cd backend
+        pip install --upgrade pip
         pip install -r requirements.txt 
-        python3 manage.py collectstatic
+        python3 manage.py collectstatic --noinput
         cd ..
 
     - name: Collect website and django static into nginx container build
       run: |
-        cp frontend/dist/* nginx/html/.
-        cp backend/
+        cp -r frontend/dist/* nginx/html/.
+        cp -r backend/static/* nginx/html/.
           
 #     # Build the Docker image
 #     - name: Build
