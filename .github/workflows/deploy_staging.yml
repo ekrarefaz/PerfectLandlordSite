@@ -73,7 +73,9 @@ jobs:
       run: |
         docker compose -f docker-compose-production.yml push -q
 
-    deploy:
+  build:
+    runs-on: ubuntu-latest
+    steps:
     - name: Install into staging server
       use: appleboy/ssh-action@master
       env:
