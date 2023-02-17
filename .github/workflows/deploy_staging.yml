@@ -65,10 +65,36 @@ jobs:
         cp -r frontend/dist/* nginx/html/.
         cp -r backend/static/* nginx/html/.
 
-    - name: Build and push docker images
+    - name: Build docker images
       run: |
-        docker compose -f docker-compose-production.yml build
-        docker compose -f docker-compose-production.yml push
+        docker compose -f docker-compose-production.yml build --progress plain
+
+    - name: Push docker images
+      run: |
+        docker compose -f docker-compose-production.yml push -q
+
+    - name: Install into staging server
+      use: appleboy/ssh-action@master
+      env:
+        IN_PRODUCTION: "True"
+      with:
+        host: 203.16.241.202
+        username: root
+        key: ${{ secrets.STAGE_SECRET }}
+        port: 22
+        script: |
+          mkdir -p /opt/perfectlandlord/persistent
+          mkdir -p /opt/perfectlandlord/postgresql/data
+          mkdir -p /opt/perfectlandlord_docker
+          cd /opt/perfectlandlord_docker
+          docker compose down
+          docker compose pull
+          docker compose run backend manage.py migrate
+          docker compose up -d
+          
+
+      run: |
+        ssh 203.16.241.202 
 
 #     # Build the Docker image
 #     - name: Build
