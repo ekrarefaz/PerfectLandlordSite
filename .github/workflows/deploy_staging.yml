@@ -77,7 +77,7 @@ jobs:
 #    runs-on: ubuntu-latest
 #    steps:
     - name: Install into staging server
-      use: appleboy/ssh-action@master
+      uses: appleboy/ssh-action@master
       env:
         IN_PRODUCTION: "True"
       with:
