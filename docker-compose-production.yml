@@ -13,6 +13,8 @@ services:
 
   pgdatabase:
     image: postgres:13.1
+    expose:
+      - "5432"
     ports:
       - "5432:5432"
     env_file:
@@ -36,11 +38,11 @@ services:
     ports:
       - "8000:8000"
     env_file:
-      - ./env
+      - backend.env
     volumes:
-      - /opt/persistent:/opt/persistent
+      - /opt/perfectlandlord/persistent:/opt/perfectlandlord/persistent
     working_dir: /data/backend
-    command: /usr/bin/daphne -b 0.0.0.0 -p 8000 theperfectlandlord.asgi:application
+    command: /usr/local/bin/daphne -b 0.0.0.0 -p 8000 theperfectlandlord.asgi:application
 
   nginx:
     platform: linux/amd64
@@ -50,6 +52,7 @@ services:
       - backend
     ports:
       - "80:80"
+      - "443:443"
     networks:
       - app_network
 

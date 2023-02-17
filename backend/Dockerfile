@@ -18,7 +18,7 @@ RUN rm -fr /var/cache/apk/*
 #
 # Initialize
 RUN mkdir -p /data/backend
-RUN mkdir -p /opt/persistent
+RUN mkdir -p /opt/perfectlandlord/persistent
 WORKDIR /data/backend
 #
 # Prepare
