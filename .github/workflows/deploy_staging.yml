@@ -60,7 +60,12 @@ jobs:
       run: |
         cp -r frontend/dist/* nginx/html/.
         cp -r backend/static/* nginx/html/.
-          
+
+    - name: Build and push docker images
+      run: |
+        docker compose -f docker-compose-production.yml build
+        docker compose -f docker-compose-production.yml push
+
 #     # Build the Docker image
 #     - name: Build
 #       run: |-
