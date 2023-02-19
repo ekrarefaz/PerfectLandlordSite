@@ -1,18 +1,22 @@
 <template>
   <Navbar/>
-  <div id="wrapper">
-    <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
-      <div class="lds-dual-ring"></div>
+  <body>
+    <div id="wrapper">
+      <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
+        <div class="lds-dual-ring"></div>
+      </div>
+
+      <section class="section">
+        <router-view/>
+      </section>
     </div>
+  </body>
 
-    <section class="section">
-      <router-view/>
-    </section>
+  <footer class="footer">
+    <p class="has-text-centered">Copyright (c) 2023</p>
+  </footer>
 
-    <footer class="footer">
-      <p class="has-text-centered">Copyright (c) 2023</p>
-    </footer>
-  </div>
+
 </template>
 
 <script>
@@ -76,4 +80,5 @@ export default {
     height: 80px;
   }
 }
+
 </style>

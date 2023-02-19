@@ -1,51 +1,32 @@
 <template>
-    <body>
-    <section class="hero is-medium is-dark mb-6">
-        <div class="hero-body has-text-centered">
-            <p class="title mb-6" v-ref="title">
-                The Perfect Landlord
-            </p>
-            <div class="redirection">
-                <button id="tenant" @click="redirectTenant">I'm a Tenant</button>
-                <button id="landlord" @click="redirectLandlord">I'm a Landlord</button>
-            </div>
-        </div>
-    </section>
-    </body>
+    <div v-show="loaded">
+        <LoadingAnimated/>
+    </div>
+    <div v-show="!loaded">
+        <HomePage/>
+    </div>
 </template>
-<script>
+
+<script scoped>
+    import HomePage from '../components/HomePage/HomePage.vue'
+    import LoadingAnimated from '../components/LoadingAnimated.vue'
+
     export default{
         data(){
             return{
-                title: "The Perfect Landlord",
-                index: 0
+                loaded : true
             }
+        },
+        components:{
+            LoadingAnimated,
+            HomePage
         },
         methods:{
-            redirectTenant(){
-                this.$router.push('/tenant-home')
-            },
-            redirectLandlord(){
-                this.$router.push('/landlord-home')
-            },
-            writeText(){
-                this.$refs["title"] = text.slice(0,this.index);
-                this.index++;
-            }
+
         },
-        mounted(){
-            this.writeText
+        created(){
+                setTimeout(()=> this.loaded = false, 2000)
         }
-}
+    }
+
 </script>
-<style scoped>
-    button{
-        padding:1rem;
-        border-radius: 5px;
-        border:none;
-    }
-    .redirection{
-        margin: 10px;
-        padding: 10px;
-    }
-</style>
