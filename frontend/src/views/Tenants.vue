@@ -1,32 +1,50 @@
 <template>
-    <h2>Tenants Looking to Rent</h2>
-    <button id="filterBtn" @click="showFilter">Filter</button>
-    <div v-if="filterVisible">
-        <TenantFilter/>
-    </div>
-    <div v-if="tenants">
-        <div class="tenant-container">
-            <div v-for="tenant in tenants" :key="tenant.id">
-                <router-link to="/">
-                <div class="tenant">
-                    <div class="image">
-                        <img src="../assets/logo.png" alt="">
-                    </div>
-                    <div class="details">
-                        <h3>{{tenant.name}} ({{tenant.age}})</h3>
-                        <sub>{{tenant.gender}}</sub>
-                        <br>
-                        <p>{{tenant.job}}</p>
-                        <p>Preference: {{tenant.preference.type}}</p>
-                    </div>
+  <div class="home">
+    <div class="columns is-multiline">
+      <div class="column is-12">
+          <h2 class="is-size-2 has-text-centered">View Possible Tenants' profile:</h2>
+      </div>
+
+      <div class="tenant-container">
+        <div v-for="tenant in tenants" :key="tenant.id">
+            <router-link to="/">
+            <div class="tenant">
+                <div class="image">
+                    <img src="../assets/logo.png" alt="">
                 </div>
-                </router-link>
+                <div class="details">
+                    <h3>{{tenant.name}} ({{tenant.age}})</h3>
+                    <sub>{{tenant.bio}}</sub>
+                    <br>
+                    <!--
+                    <p>{{tenant.job}}</p>
+                    <p>Preference: {{tenant.preference.type}}</p>
+                    -->      
+                </div>
             </div>
+            </router-link>
         </div>
+      </div>
+
+      <div class="box" v-for="tenant in tenants">
+        <!-- <figure class="image mb-4">
+          <img :src="property.get_thumbnail">
+        </figure> -->
+
+        <!-- <h3>
+          <div class="is-size-4">{{ tenant.name }}</div>
+        </h3> -->
+
+        <p>{{ tenant.bio }}</p>
+
+        <!-- <router-link v-bind:to="tenant.get_absolute_url" class="button is-dark mt-4">View details</router-link> -->
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
+<<<<<<< HEAD
     import axios from 'axios'
     import TenantFilter from '../components/Filters/TenantFilter.vue';
     export default {
@@ -61,6 +79,49 @@
       }
     }
   }
+=======
+import axios from 'axios'
+
+import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
+
+import TenantFilter from '../components/Filters/TenantFilter.vue';
+
+
+export default {
+  name: 'Tenants',
+  data() {
+    return {
+      tenants: [],
+      filterVisible: false,
+    }
+  },
+  components: {
+    LoggedInNavbar,
+},
+  mounted() {
+    this.getTenants()
+    document.title = 'Tenants | The Perfect Landlord'
+  },
+  methods: {
+    showFilter() {
+          this.filterVisible = !this.filterVisible;
+    },
+    async getTenants() {
+      const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
+
+      await axios
+        .get('/tenants/', config)
+        .then(response => {
+          console.log(response.data)
+          this.tenants = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
+  }
+}
+>>>>>>> 6aaa6ea0310e6a63953ffb85987c4e174cdd3327
 </script>
 
 <style scoped>
@@ -103,6 +164,4 @@ img{
     width: 100px;
     height: 100px;
 }
-
-
 </style>

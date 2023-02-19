@@ -96,4 +96,8 @@ class Profile(models.Model):
 
         thumbnail = File(thumb_io, name=image.name)
 
+<<<<<<< HEAD
         return thumbnail
+=======
+        return thumbnail
+>>>>>>> 6aaa6ea0310e6a63953ffb85987c4e174cdd3327

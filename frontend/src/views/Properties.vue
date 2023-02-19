@@ -50,7 +50,7 @@ export default {
 },
   mounted() {
     this.getMyProperties()
-    document.title = 'Home | The Perfect Landlord'
+    document.title = 'My Properties | The Perfect Landlord'
   },
   methods: {
     showFilter(){
