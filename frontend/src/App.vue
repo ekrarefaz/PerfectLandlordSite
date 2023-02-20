@@ -42,6 +42,12 @@ export default {
 </script>
 
 <style lang="scss">
+:root {
+  --card-width: 250px;
+  --space: 20px;
+  --transition: 0.3s ease-out;
+}
+
 @import '../node_modules/bulma';
 
 .lds-dual-ring {

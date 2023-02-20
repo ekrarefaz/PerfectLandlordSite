@@ -22,14 +22,14 @@
   --gray: grey;
   --black: #000;
   --white: #fff;
-  --green: gold;
+  --green: maroon;
   --body-background: #fff;
   --hover-color: grey;
   --header-background: #000;
   --anchor-color: #fff;
   --heading-color: #b2b2b2;
   --paragraph-color: #b2b2b2;
-  --anchor-active-color: gold;
+  --anchor-active-color: maroon;
 }  
 
 nav{

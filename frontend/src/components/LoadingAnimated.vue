@@ -3,8 +3,8 @@
     <section class="loading-data">
       <h2 class="loading-text text-center text-uppercase">
         <span class="char">The</span>
-        <span class="char">Perfect</span>
-        <span class="char">Landlord</span>
+        <span class="char red-text">Perfect</span>
+        <span class="char red-text">Landlord</span>
       </h2>
     </section>
 </template>
@@ -15,7 +15,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  color: black;
 }
 
 h2 {
@@ -41,7 +40,6 @@ body {
   justify-content: center;
   flex-direction: column;
   background:beige;
-  color: black;
 }
 
 .bg-1 {
@@ -53,7 +51,11 @@ body {
   top: 0;
   left: 0;
   display: block;
-  background: beige;
+  background: maroon;
+}
+
+.red-text{
+  color: maroon;
 }
 
 @keyframes page-up {
@@ -79,7 +81,6 @@ body {
     opacity: 0;
     animation: loading-text 2s infinite ease-in-out;
     display: inline-block;
-    color:black;
     &:nth-child(1) {
       animation-delay: 0.9s;
     }
