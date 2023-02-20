@@ -61,10 +61,18 @@ class PropertiesListRestricted(APIView):
 # Search functionality based on address
 @api_view(['POST'])
 def search(request):
+
+    # Retrieve query
     query = request.data.get('query', '')
 
+    # Retrieve User
+    tokenString = request.headers['Authorization'].split()[1]
+    token = Token.objects.get(key=tokenString)
+    user = User.objects.get(username=token.user)
+
     if query:
-        properties = Property.objects.filter(Q(address__icontains=query))
+        properties = Property.objects.filter(landlord_id=user.id)
+        properties = properties.filter(Q(address__icontains=query))
         serializer = PropertySerializer(properties, many=True)
         return Response(serializer.data)
     else:
