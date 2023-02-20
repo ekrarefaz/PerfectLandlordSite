@@ -36,5 +36,11 @@ class PropertySerializer(serializers.ModelSerializer):
             'description',
             'price',
             'get_image',
-            'get_thumbnail'
+            'get_thumbnail',
+            'room',
+            'bathroom',
+            'furnished',
+            'airConditioning',
+            'pool',
+            'gym',
         ]

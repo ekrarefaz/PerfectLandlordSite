@@ -1,9 +1,11 @@
+from django.db.models import Q
 from django.contrib.auth.models import User, Group
 
 from django.http import Http404
 from rest_framework.response import Response
 
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework import viewsets
 
 from rest_framework import permissions
@@ -26,7 +28,15 @@ class GroupList(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+
+class PropertiesList(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Property.objects.all()
+    serializer_class = PropertySerializer
+    # permission_classes = [permissions.IsAuthenticated]
 
 class PropertiesListRestricted(APIView):
     """
@@ -47,19 +57,64 @@ class PropertiesListRestricted(APIView):
         serializer = PropertySerializer(queryset, many=True)
 
         return Response(serializer.data)
-    
-class PropertiesList(APIView):
-    """
-    API endpoint that allows all properties to be viewed.
-    """
 
-    # permission_classes = [permissions.IsAuthenticated]
+# Search functionality based on address
+@api_view(['POST'])
+def search(request):
+    query = request.data.get('query', '')
 
-    def get(self, request, format=None):
-        queryset = Property.objects.all()
-        serializer = PropertySerializer(queryset, many=True)
-
+    if query:
+        properties = Property.objects.filter(Q(address__icontains=query))
+        serializer = PropertySerializer(properties, many=True)
         return Response(serializer.data)
+    else:
+        return Response({"properties": []})
+
+# Filter functionality 
+@api_view(['POST'])
+def filter(request):
+
+    q_type = request.data.get(
+        'type', 
+        'Apartment,House,Townhouse,Studio,Retirement Home'
+    ).split(',', -1)
+
+    q_furnished = list(map(int, request.data.get(
+        'furnished', 
+        '0,1'
+    ).split(',')))
+
+    q_airConditioning = list(map(int, request.data.get(
+        'airConditioning', 
+        '0,1'
+    ).split(',')))
+
+    q_pool = list(map(int, request.data.get(
+        'pool', 
+        '0,1'
+    ).split(',')))
+
+    q_gym = list(map(int, request.data.get(
+        'gym', 
+        '0,1'
+    ).split(',')))
+
+    if q_type:
+        properties = Property.objects.filter(
+            type__in=q_type, 
+            room__gte=int(request.data.get('minRoom', 0)), 
+            room__lte=int(request.data.get('maxRoom', 1000)), 
+            bathroom__gte=int(request.data.get('minBathroom', 0)), 
+            bathroom__lte=int(request.data.get('maxBathroom', 1000)), 
+            furnished__in=q_furnished,
+            airConditioning__in=q_airConditioning,
+            pool__in=q_pool,
+            gym__in=q_gym,
+        )        
+        serializer = PropertySerializer(properties, many=True)
+        return Response(serializer.data)
+    else:
+        return Response({"properties": []})
 
 class PropertyDetails(APIView):
     def get_object(self, property_slug):

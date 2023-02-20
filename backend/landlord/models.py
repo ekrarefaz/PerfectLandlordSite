@@ -14,11 +14,22 @@ class Property(models.Model):
     landlord = models.ForeignKey(User, on_delete = models.CASCADE)
     type = models.CharField(max_length=30, blank=False)
     slug = models.SlugField()    
+    address= models.CharField(max_length=30, blank=False)
     description= models.CharField(max_length=100, blank=False)
     price= models.IntegerField(default=0, blank=False)
-    address= models.CharField(max_length=30, blank=False)
+
+    # Images
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+
+    # Features
+    room = models.IntegerField(default=0, blank=False)
+    bathroom = models.IntegerField(default=0, blank=False)
+    furnished = models.CharField(max_length=30, default='')
+    airConditioning= models.CharField(max_length=30, default=0)
+    gym= models.CharField(max_length=30, default=0)
+    pool= models.CharField(max_length=30, default=0)
+
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -58,6 +69,7 @@ class Property(models.Model):
         thumbnail = File(thumb_io, name=image.name)
 
         return thumbnail
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
