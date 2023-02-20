@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'djoser',
 
     'landlord',
+    'agent',
 ]
 
 CORS_ALLOWED_ORIGINS = [
