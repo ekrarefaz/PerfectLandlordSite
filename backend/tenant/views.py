@@ -1,12 +1,15 @@
 from django.db.models import Q
 from rest_framework.views import APIView
 from rest_framework.decorators import api_view
+from rest_framework import viewsets
 
 from rest_framework.response import Response
 
 from django.contrib.auth.models import User, Group
 from landlord.models import Property
 from landlord.serializers import PropertySerializer
+from .models import SavedProperty
+from .serializers import SavedPropertySerializer
 
 from rest_framework.authtoken.models import Token
 
@@ -23,6 +26,40 @@ class PropertiesList(APIView):
         serializer = PropertySerializer(queryset, many=True)
         return Response(serializer.data)
 
+class SavedPropertiesList(APIView):
+    """
+    API endpoint that allows properties that belongs to the user to be viewed and edited.
+    """
+
+    # permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, format=None):
+        # Retrieve token
+        tokenString = request.headers['Authorization'].split()[1]
+
+        # Retrieve User
+        token = Token.objects.get(key=tokenString)
+        user = User.objects.get(username=token.user)
+
+        queryset = SavedProperty.objects.filter(tenant=user)
+        serializer = SavedPropertySerializer(queryset, many=True)
+
+        return Response(serializer.data)
+    
+    def post(self, request):
+        # Retrieve token
+        tokenString = request.headers['Authorization'].split()[1]
+
+        # Retrieve User
+        token = Token.objects.get(key=tokenString)
+        user = User.objects.get(username=token.user)
+
+        propertyId = int(request.data.get('property', 0))
+        property = Property.objects.get(id=propertyId)
+
+        SavedProperty.objects.create(property=property,tenant=user)
+
+        return Response({'Success': 'Success'})
 
 @api_view(['POST'])
 def search(request):
