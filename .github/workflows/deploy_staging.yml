@@ -84,6 +84,7 @@ jobs:
         username: root
         key: ${{ secrets.STAGE_SECRET }}
         port: 22
+        script_stop: true
         script: |
           mkdir -p /opt/perfectlandlord/persistent
           mkdir -p /opt/perfectlandlord/postgresql/data
@@ -91,5 +92,6 @@ jobs:
           cd /opt/perfectlandlord_docker
           docker compose down
           docker compose pull -q
-          docker compose run backend manage.py migrate
+          docker compose run backend python3 manage.py migrate
           docker compose up -d
+          
