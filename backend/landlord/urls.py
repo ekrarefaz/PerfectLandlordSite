@@ -11,10 +11,6 @@ router.register(r'groups', views.GroupList)
 router.register(r'properties', views.PropertiesList)
 
 urlpatterns = [
-    # Authentication API
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),
-
     # App API
     path('profile/', views.ProfileView.as_view()),
     path('my-properties/', views.PropertiesListRestricted.as_view()),
