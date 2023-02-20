@@ -7,18 +7,27 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 
-# Property defines the properties listed in the website
-
 class Property(models.Model):
     id = models.BigAutoField(primary_key=True)
     landlord = models.ForeignKey(User, on_delete = models.CASCADE)
     type = models.CharField(max_length=30, blank=False)
     slug = models.SlugField()    
+    address= models.CharField(max_length=30, blank=False)
     description= models.CharField(max_length=100, blank=False)
     price= models.IntegerField(default=0, blank=False)
-    address= models.CharField(max_length=30, blank=False)
+
+    # Images
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
     thumbnail = models.ImageField(upload_to='uploads/', blank=True, null=True)
+
+    # Features
+    room = models.IntegerField(default=0, blank=False)
+    bathroom = models.IntegerField(default=0, blank=False)
+    furnished = models.CharField(max_length=30, default='')
+    airConditioning= models.CharField(max_length=30, default=0)
+    gym= models.CharField(max_length=30, default=0)
+    pool= models.CharField(max_length=30, default=0)
+
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -58,6 +67,7 @@ class Property(models.Model):
         thumbnail = File(thumb_io, name=image.name)
         return thumbnail
 
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='uploads/', blank=True, null=True)
@@ -95,9 +105,5 @@ class Profile(models.Model):
         img.save(thumb_io, 'JPEG', quality=85)
 
         thumbnail = File(thumb_io, name=image.name)
+        return thumbnail
 
-<<<<<<< HEAD
-        return thumbnail
-=======
-        return thumbnail
->>>>>>> 6aaa6ea0310e6a63953ffb85987c4e174cdd3327

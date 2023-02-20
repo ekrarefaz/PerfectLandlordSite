@@ -65,7 +65,7 @@ export default {
             }
 
             await axios
-                .post("/token/login/", formData)
+                .post("/v1/token/login/", formData)
                 .then(response => {
                     const token = response.data.auth_token
 

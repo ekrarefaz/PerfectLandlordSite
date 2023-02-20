@@ -44,40 +44,47 @@
 </template>
 
 <script>
-    import axios from 'axios'
-    import TenantFilter from '../components/Filters/TenantFilter.vue';
-    export default {
-    name: 'Tenants',
-    data() {
-      return {
-        tenants: [],
-        filterVisible: false,
-      }
-    },
-    components: {
-      TenantFilter,
+import axios from 'axios'
+
+import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
+
+import TenantFilter from '../components/Filters/TenantFilter.vue';
+
+
+export default {
+  name: 'Tenants',
+  data() {
+    return {
+      tenants: [],
+      filterVisible: false,
+    }
   },
-    mounted() {
-      this.getTenants()
-      document.title = 'Tenants | The Perfect Landlord'
+  components: {
+    LoggedInNavbar,
+},
+  mounted() {
+    this.getTenants()
+    document.title = 'Tenants | The Perfect Landlord'
+  },
+  methods: {
+    showFilter() {
+          this.filterVisible = !this.filterVisible;
     },
-    methods: {
-      async getTenants() {
-        const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
-  
-        await axios
-          .get('/tenants/', config)
-          .then(response => {
-            console.log(response.data)
-            this.tenants = response.data
-            console.log(this.tenants)
-          })
-          .catch(error => {
-            console.log(error)
-          })
-      }
+    async getTenants() {
+      const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
+
+      await axios
+        .get('/landlord/tenants/', config)
+        .then(response => {
+          console.log(response.data)
+          this.tenants = response.data
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
+}
 </script>
 
 <style scoped>

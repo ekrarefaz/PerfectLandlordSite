@@ -1,9 +1,11 @@
+from django.db.models import Q
 from django.contrib.auth.models import User, Group
 
-from django.http import Http404
 from rest_framework.response import Response
+from django.http import Http404
 
 from rest_framework.views import APIView
+from rest_framework.decorators import api_view
 from rest_framework import viewsets
 
 from rest_framework import permissions
@@ -26,7 +28,15 @@ class GroupList(viewsets.ModelViewSet):
     """
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+
+class PropertiesList(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Property.objects.all()
+    serializer_class = PropertySerializer
+    # permission_classes = [permissions.IsAuthenticated]
 
 class PropertiesListRestricted(APIView):
     """
@@ -47,19 +57,27 @@ class PropertiesListRestricted(APIView):
         serializer = PropertySerializer(queryset, many=True)
 
         return Response(serializer.data)
-    
-class PropertiesList(APIView):
-    """
-    API endpoint that allows all properties to be viewed.
-    """
 
-    # permission_classes = [permissions.IsAuthenticated]
+# Search functionality based on address
+@api_view(['POST'])
+def search(request):
 
-    def get(self, request, format=None):
-        queryset = Property.objects.all()
-        serializer = PropertySerializer(queryset, many=True)
+    # Retrieve query
+    query = request.data.get('query', '')
 
+    # Retrieve User
+    tokenString = request.headers['Authorization'].split()[1]
+    token = Token.objects.get(key=tokenString)
+    user = User.objects.get(username=token.user)
+
+    if query:
+        properties = Property.objects.filter(landlord_id=user.id)
+        properties = properties.filter(Q(address__icontains=query))
+        serializer = PropertySerializer(properties, many=True)
         return Response(serializer.data)
+    else:
+        return Response({"properties": []})
+
 
 class PropertyDetails(APIView):
     def get_object(self, property_slug):

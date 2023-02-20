@@ -8,15 +8,15 @@ router = routers.DefaultRouter()
 
 router.register(r'users', views.UserList)
 router.register(r'groups', views.GroupList)
+router.register(r'properties', views.PropertiesList)
 
 urlpatterns = [
-    # Authentication API
-    path('auth/', include('djoser.urls')),
-    path('auth/', include('djoser.urls.authtoken')),
-
     # App API
     path('profile/', views.ProfileView.as_view()),
-    path('properties/', views.PropertiesListRestricted.as_view()),
-    path('properties/<slug:property_slug>', views.PropertyDetails.as_view()),
+    path('my-properties/', views.PropertiesListRestricted.as_view()),
+    path('my-properties/search/', views.search),
+    path('my-properties/<slug:property_slug>', views.PropertyDetails.as_view()),
     path('tenants/', views.TenantProfilesList.as_view()),
 ]
+
+urlpatterns += router.urls
