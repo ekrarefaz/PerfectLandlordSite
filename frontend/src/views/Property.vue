@@ -65,7 +65,7 @@ export default {
             this.$store.commit("setIsLoading", true);
             const property_slug = this.$route.params.property_slug;
             await axios
-                .get(`/my-properties/${property_slug}`)
+                .get(`/landlord/my-properties/${property_slug}`)
                 .then(response => {
                 console.log(response.data);
                 this.property = response.data;

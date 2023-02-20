@@ -74,7 +74,7 @@ export default {
       const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
 
       await axios
-        .get('/tenants/', config)
+        .get('/landlord/tenants/', config)
         .then(response => {
           console.log(response.data)
           this.tenants = response.data
