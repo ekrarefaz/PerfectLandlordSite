@@ -1,14 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
-import Properties from '../views/Properties.vue';
-import Property from '../views/Property.vue';
+import Home from '../views/CommonView/Home.vue';
+import Properties from '../views/TenantView/Properties.vue';
+import Property from '../views/TenantView/Property.vue';
 import SignUp from '../views/SignUp.vue';
-import LogIn from '../views/LogIn.vue';
-import Tenants from '../views/Tenants.vue';
-import About from '../views/About.vue';
+import LogIn from '../views/CommonView/LogIn.vue';
+import Tenants from '../views/LandlordView/Tenants.vue';
+import About from '../views/CommonView/About.vue';
 import UserProfile from '../views/UserProfile.vue';
 import TenantLanding from '../views/TenantLanding.vue';
 import LandlordLanding from '../views/LandlordLanding.vue';
+import LandlordProfile from '../views/LandlordView/LandlordProfile.vue'
 
 const routes = [
   {
@@ -80,6 +81,14 @@ const routes = [
     path: '/profile',
     name: 'profile',
     component: UserProfile,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/landlord-profile',
+    name: 'landlordprofile',
+    component: LandlordProfile,
     // meta:{
     //   requiredLogin:true
     // }

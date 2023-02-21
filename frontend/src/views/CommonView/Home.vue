@@ -8,8 +8,8 @@
 </template>
 
 <script scoped>
-    import HomePage from '../components/HomePage/HomePage.vue'
-    import LoadingAnimated from '../components/LoadingAnimated.vue'
+    import HomePage from '@/components/HomePage/HomePage.vue'
+    import LoadingAnimated from '@/components/LoadingAnimated.vue'
 
     export default{
         data(){

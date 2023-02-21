@@ -8,14 +8,14 @@
                     <div class="field">
                         <label>Username</label>
                         <div class="control">
-                            <input type="text" class="input" v-model="username">
+                            <input type="text" class="input" v-model="username" name="username">
                         </div>
                     </div>
 
                     <div class="field">
                         <label>Password</label>
                         <div class="control">
-                            <input type="password" class="input" v-model="password">
+                            <input type="password" class="input" v-model="password" name="password">
                         </div>
                     </div>
 
@@ -47,6 +47,7 @@ export default {
         return {
             username: '',
             password: '',
+            userType: '',
             errors: []
         }
     },
@@ -65,7 +66,7 @@ export default {
             }
 
             await axios
-                .post("/v1/token/login/", formData)
+                .post("auth/token/login/", formData)
                 .then(response => {
                     const token = response.data.auth_token
 
@@ -74,6 +75,7 @@ export default {
                     axios.defaults.headers.common["Authorization"] = "Token " + token
 
                     localStorage.setItem("token", token)
+                    localStorage.setItem("user", this.username)
 
                     const toPath = this.$route.query.to || '/'
 

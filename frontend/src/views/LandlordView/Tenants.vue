@@ -10,7 +10,7 @@
             <router-link to="/">
             <div class="tenant">
                 <div class="image">
-                    <img src="../assets/logo.png" alt="">
+                    <img src="@/assets/logo.png" alt="">
                 </div>
                 <div class="details">
                     <h3>{{tenant.name}} ({{tenant.age}})</h3>
@@ -48,7 +48,7 @@ import axios from 'axios'
 
 import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
 
-import TenantFilter from '../components/Filters/TenantFilter.vue';
+import TenantFilter from '@/components/Filters/TenantFilter.vue';
 
 
 export default {
