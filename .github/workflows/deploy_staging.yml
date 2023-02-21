@@ -57,6 +57,7 @@ jobs:
         pip install --upgrade pip
         pip install -r requirements.txt 
         python3 manage.py check
+        python3 manage.py test
         python3 manage.py collectstatic --noinput
         cd ..
 
