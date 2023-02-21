@@ -24,6 +24,7 @@ WORKDIR /data/backend
 # Prepare
 COPY ./manage.py /data/backend/
 COPY ./landlord /data/backend/landlord
+COPY ./landlord /data/backend/tenant
 COPY ./theperfectlandlord /data/backend/theperfectlandlord
 COPY ./static/ /data/backend/static
 COPY requirements.txt /data/backend/
