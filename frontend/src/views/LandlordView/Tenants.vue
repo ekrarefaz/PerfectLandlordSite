@@ -5,40 +5,10 @@
           <h2 class="is-size-2 has-text-centered">View Possible Tenants' profile:</h2>
       </div>
 
-      <div class="tenant-container">
-        <div v-for="tenant in tenants" :key="tenant.id">
-            <router-link to="/">
-            <div class="tenant">
-                <div class="image">
-                    <img src="@/assets/logo.png" alt="">
-                </div>
-                <div class="details">
-                    <h3>{{tenant.name}} ({{tenant.age}})</h3>
-                    <sub>{{tenant.bio}}</sub>
-                    <br>
-                    <!--
-                    <p>{{tenant.job}}</p>
-                    <p>Preference: {{tenant.preference.type}}</p>
-                    -->      
-                </div>
-            </div>
-            </router-link>
-        </div>
-      </div>
-
-      <div class="box" v-for="tenant in tenants">
-        <!-- <figure class="image mb-4">
-          <img :src="property.get_thumbnail">
-        </figure> -->
-
-        <!-- <h3>
-          <div class="is-size-4">{{ tenant.name }}</div>
-        </h3> -->
-
-        <p>{{ tenant.bio }}</p>
-
-        <!-- <router-link v-bind:to="tenant.get_absolute_url" class="button is-dark mt-4">View details</router-link> -->
-      </div>
+      <UserProfile 
+        v-for="tenant in tenants"
+        v-bind:key="tenant.user.id"
+        v-bind:profile="tenant" />
     </div>
   </div>
 </template>
@@ -48,7 +18,7 @@ import axios from 'axios'
 
 import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
 
-import TenantFilter from '@/components/Filters/TenantFilter.vue';
+import UserProfile from '@/components/UserProfile.vue';
 
 
 export default {
@@ -61,6 +31,7 @@ export default {
   },
   components: {
     LoggedInNavbar,
+    UserProfile
 },
   mounted() {
     this.getTenants()

@@ -1,5 +1,5 @@
 <template>
-  <LandlordNav/>
+  <LandlordSubNav/>
   <div v-if="!filterVisible">
     <div class="container">
     <div class="box" v-for="property in myProperties">
@@ -224,7 +224,7 @@ import PropertyBox from '@/components/Tenant/PropertyBox'
 import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
 import PropertyFilter from '@/components/Filters/PropertyFilter.vue'
 import LandlordProfile from '../LandlordView/LandlordProfile.vue'
-import LandlordNav from '@/components/Landlord/LandlordNav.vue'
+import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue'
 
 export default {
   name: 'Home',
@@ -239,7 +239,7 @@ export default {
     LoggedInNavbar,
     PropertyFilter,
     LandlordProfile,
-    LandlordNav,
+    LandlordSubNav,
 },
   mounted() {
     this.getMyProperties()

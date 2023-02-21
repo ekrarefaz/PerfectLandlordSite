@@ -1,23 +1,18 @@
 <template>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
   <nav>
-    <div class="box-shadow">
-      <div class="section logo">
-        <router-link to="/landlord"><span class="white">ThePerfect</span><span class="green">Landlord</span></router-link>
-      </div>
-      <div class="section">
+    <div class="box">
+      <div class="sectionNav">
         <ul>
-          <li><router-link to="/tenants" class="active">Match With Tenants</router-link></li>
-            <li><router-link to="/my-properties" class="active">My Properties</router-link></li>
-            <li><router-link to="/profile" class="active">My Profile</router-link></li>
-            <li><router-link to="/landlord" class="active">Settings</router-link></li>
-  
+            <li><router-link to="#" class="active" >Details</router-link></li>
+            <li><router-link to="/inspections" >Inspections</router-link></li>
+            <li><router-link to="#">Applications</router-link></li>
         </ul>
       </div>
     </div>
   </nav>
   </template>
-  <style>
+  <style >
   :root {
     --gray: grey;
     --black: #000;
@@ -26,15 +21,28 @@
     --body-background: #fff;
     --hover-color: grey;
     --header-background: #000;
-    --anchor-color: #fff;
+    --anchor-color: black;
     --heading-color: #b2b2b2;
     --paragraph-color: #b2b2b2;
     --anchor-active-color: maroon;
-  }  
-  
-  nav{
+    }  
+    .box{
+        width:40%;
+        align-items: center;
+        align-content: center;
+        align-self: center;
+        text-align: center;
+    }
+  .sectionNav{
     width: 100vw;
-    margin: 0;
+    margin: 10px;
+    color: maroon;
+    display: inline-block;
+    text-align: center;
+  }
+  .sectionNav ul li{
+    display: inline-block;
+
   }
   .green {
     color: var(--green);
@@ -49,7 +57,6 @@
     margin: 0;
     padding: 0;
   }
-  
   
   a {
     text-decoration: none;
@@ -66,7 +73,7 @@
   
   .box-shadow {
     display: flex;
-    background-color: var(--header-background);
+    background-color: black;
     padding-top: 5px;
     justify-content: space-around;
     flex-flow: row wrap;

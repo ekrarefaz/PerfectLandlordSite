@@ -1,6 +1,6 @@
 <template>
     <div class="landlordNav">
-        <LandlordNav/>
+        <LandlordSubNav/>
     </div>
     <div class="page-property">
         <div class="address-heading">
@@ -127,7 +127,7 @@
 
 <script>
 import LandingNavbar from '@/components/LandingNavbar.vue'
-import LandlordNav from '@/components/Landlord/LandlordNav.vue';
+import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue';
 import axios from 'axios'
 
 export default {
@@ -181,7 +181,7 @@ export default {
             return this.images[Math.abs(this.currentIndex) % this.images.length];
         },
     },
-    components: { LandingNavbar, LandlordNav }
+    components: { LandingNavbar, LandlordSubNav }
 }
 
 </script>
