@@ -1,7 +1,7 @@
 <template>
     <div class="card">
         <div class="cover-photo">
-            <img src="../assets/logo.png" class="profile">
+            <img src="@/assets/logo.png" class="profile">
         </div>
         <h3 class="profile-name">Ekrar Efaz</h3>
         <p class="about">Tenant</p>

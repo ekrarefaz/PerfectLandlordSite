@@ -60,13 +60,14 @@
         <button type="submit"> Submit </button>
     </form>
 </template>
-<style scoped>
+<style>
     form {
         max-width: 700px;
         margin: 10px auto;
         padding: 10px 20px;
         background: #f4f7f8;
         border-radius: 8px;
+        z-index: 2;
     }
     input,
     select{
@@ -91,14 +92,11 @@
     button {
         padding: 19px 39px 18px 39px;
         color: #FFF;
-        background-color: #4bc970;
-        font-size: 18px;
+        font-size: 10px;
         text-align: center;
         font-style: normal;
         border-radius: 5px;
         width: 100%;
-        border: 1px solid #3ac162;
-        border-width: 1px 1px 3px;
         box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
         margin-bottom: 10px;
     }

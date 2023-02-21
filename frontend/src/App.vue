@@ -46,6 +46,17 @@ export default {
   --card-width: 250px;
   --space: 20px;
   --transition: 0.3s ease-out;
+  --gray: grey;
+  --black: #000;
+  --white: #fff;
+  --green: maroon;
+  --body-background: #fff;
+  --hover-color: grey;
+  --header-background: #000;
+  --anchor-color: #fff;
+  --heading-color: #b2b2b2;
+  --paragraph-color: #b2b2b2;
+  --anchor-active-color: maroon;
 }
 
 @import '../node_modules/bulma';

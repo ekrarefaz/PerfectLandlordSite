@@ -6,26 +6,15 @@ import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/CommonView/LogIn.vue';
 import Tenants from '../views/LandlordView/Tenants.vue';
 import About from '../views/CommonView/About.vue';
-import UserProfile from '../views/UserProfile.vue';
-import TenantLanding from '../views/TenantLanding.vue';
-import LandlordLanding from '../views/LandlordLanding.vue';
-import LandlordProfile from '../views/LandlordView/LandlordProfile.vue'
+import UserProfile from '../views/TenantView/UserProfile.vue';
+import LandlordProfile from '../views/LandlordView/LandlordProfile.vue';
+import InspectionCard from '../components/Tenant/InspectionCard.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: Home,
-  },
-  {
-    path: '/tenant-home',
-    name: 'tenant-home',
-    component: TenantLanding,
-  },
-  {
-    path: '/landlord-home',
-    name: 'landlord-home',
-    component: LandlordLanding,
   },
   {
     path: '/sign-up',
@@ -54,17 +43,17 @@ const routes = [
     // }
   },
   {
-    path: '/tenants',
-    name: 'tenants',
-    component: Tenants,
+    path: '/:property_slug',
+    name: 'property-details',
+    component: Property,
     // meta:{
     //   requiredLogin:true
     // }
   },
   {
-    path: '/:property_slug',
-    name: 'property-details',
-    component: Property,
+    path: '/:property_slug/inspections',
+    name: 'inspections',
+    component: InspectionCard,
     // meta:{
     //   requiredLogin:true
     // }

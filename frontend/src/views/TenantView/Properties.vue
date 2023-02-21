@@ -1,10 +1,7 @@
 <template>
-  <button id="filterBtn" @click="showFilter">Filter</button>
-  <div v-if="filterVisible">
-      <PropertyFilter/>
-  </div>
+  <LandlordNav/>
   <div v-if="!filterVisible">
-  <div class="container">
+    <div class="container">
     <div class="box" v-for="property in myProperties">
       <router-link v-bind:to="property.get_absolute_url">
         <div class="top">
@@ -62,6 +59,7 @@ body {
   margin: 30px auto;
   display: flex;
   justify-content: space-between;
+  padding-left: 100px;
 }
 
 .container .box {
@@ -211,13 +209,22 @@ body {
   font-size: 22px;
 }
 
+button{
+  padding: 10px;
+  width: 50%;
+  align-items: center;
+  color: black;
+  
+}
 </style>
 <script>
 import axios from 'axios'
 
-import PropertyBox from '@/components/PropertyBox'
+import PropertyBox from '@/components/Tenant/PropertyBox'
 import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
 import PropertyFilter from '@/components/Filters/PropertyFilter.vue'
+import LandlordProfile from '../LandlordView/LandlordProfile.vue'
+import LandlordNav from '@/components/Landlord/LandlordNav.vue'
 
 export default {
   name: 'Home',
@@ -230,7 +237,9 @@ export default {
   components: {
     PropertyBox,
     LoggedInNavbar,
-    PropertyFilter
+    PropertyFilter,
+    LandlordProfile,
+    LandlordNav,
 },
   mounted() {
     this.getMyProperties()
@@ -252,7 +261,8 @@ export default {
         .catch(error => {
           console.log(error)
         })
-    }
+    },
+    
   }
 }
 </script>
