@@ -31,13 +31,11 @@
                 </select>
                 <div class="room">
                     <label>Rooms</label>
-                    <input type="number" name="minroom" > -
-                    <input type="number" name="maxroom">
+                    <input type="number" name="minroom" >
                 </div>
                 <div class="toilet">
                     <label>Bathrooms</label>
-                    <input type="number" name="minbath" > -
-                    <input type="number" name="maxbath">
+                    <input type="number" name="minbath" >
                 </div>
                 <select>
                     <option value="Full">Fully Furnished</option>
@@ -62,20 +60,70 @@
         <button type="submit"> Submit </button>
     </form>
 </template>
-<style>
+<style scoped>
+    form {
+        max-width: 700px;
+        margin: 10px auto;
+        padding: 10px 20px;
+        background: #f4f7f8;
+        border-radius: 8px;
+    }
+    input,
+    select{
+        background: rgba(255, 255, 255, 0.1);
+        border: none;
+        font-size: 16px;
+        height: auto;
+        margin: 0;
+        outline: 0;
+        padding: 15px;
+        width: 50%;
+        background-color: #e8eeef;
+        color: #8a97a0;
+        box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) inset;
+        margin-bottom: 30px;
+    }
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin: 0 4px 8px 0;
+    }
+
+    button {
+        padding: 19px 39px 18px 39px;
+        color: #FFF;
+        background-color: #4bc970;
+        font-size: 18px;
+        text-align: center;
+        font-style: normal;
+        border-radius: 5px;
+        width: 100%;
+        border: 1px solid #3ac162;
+        border-width: 1px 1px 3px;
+        box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
+        margin-bottom: 10px;
+    }
+      
+    select {
+    padding: 6px;
+    height: 32px;
+    border-radius: 2px;
+    }
+    
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
     .form-content{
-        border: 1px solid black;
         padding: 5px;
         margin: 20px;
     }
     .form-section-1{
-        border: 2px solid black;
         margin: 10px;
         align-content: left;
         padding: 10px;
     }
     .form-section-2{
-        border: 2px solid black;
         margin: 10px;
         align-content: left;
         padding: 10px;
@@ -89,7 +137,6 @@
         margin: 20px;
     }
     .form-section-3{
-        border: 2px solid black;
         margin: 10px;
         align-content: left;
         padding: 10px;
