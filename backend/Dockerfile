@@ -23,6 +23,7 @@ WORKDIR /data/backend
 #
 # Prepare
 COPY ./manage.py /data/backend/
+COPY ./agent /data/backend/agent
 COPY ./landlord /data/backend/landlord
 COPY ./tenant /data/backend/tenant
 COPY ./theperfectlandlord /data/backend/theperfectlandlord
