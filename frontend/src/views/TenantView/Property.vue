@@ -1,7 +1,5 @@
 <template>
-    <div class="landlordNav">
-        <LandlordSubNav/>
-    </div>
+    <TenantSubNav/>
     <div class="page-property">
         <div class="address-heading">
             <h1 class="address">{{ property.address }}</h1>
@@ -128,6 +126,7 @@
 <script>
 import LandingNavbar from '@/components/LandingNavbar.vue'
 import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue';
+import TenantSubNav from '@/components/Tenant/TenantSubNav.vue';
 import axios from 'axios'
 
 export default {
@@ -181,7 +180,7 @@ export default {
             return this.images[Math.abs(this.currentIndex) % this.images.length];
         },
     },
-    components: { LandingNavbar, LandlordSubNav }
+    components: { LandingNavbar, LandlordSubNav, TenantSubNav }
 }
 
 </script>

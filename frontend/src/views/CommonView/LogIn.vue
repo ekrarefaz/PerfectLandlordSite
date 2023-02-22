@@ -53,6 +53,7 @@ export default {
     },
     mounted() {
         document.title = 'Log In | Djackets'
+        localStorage.setItem("pageType", "common")
     },
     methods: {
         async submitForm() {

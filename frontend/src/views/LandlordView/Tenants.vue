@@ -2,13 +2,13 @@
   <div class="home">
     <div class="columns is-multiline">
       <div class="column is-12">
-          <h2 class="is-size-2 has-text-centered">View Possible Tenants' profile:</h2>
       </div>
 
-      <UserProfile 
-        v-for="tenant in tenants"
-        v-bind:key="tenant.user.id"
-        v-bind:profile="tenant" />
+      <div class="tenant-container">
+        <div v-for="tenant in tenants" :key="tenant.user.id">
+          <UserProfile v-bind:profile="tenant"></UserProfile>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -17,9 +17,9 @@
 import axios from 'axios'
 
 import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
-
 import UserProfile from '@/components/UserProfile.vue';
-
+import LandlordNav from '@/components/Landlord/LandlordNav.vue';
+import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue';
 
 export default {
   name: 'Tenants',
@@ -31,18 +31,21 @@ export default {
   },
   components: {
     LoggedInNavbar,
-    UserProfile
+    UserProfile,
+    LandlordNav,
+    LandlordSubNav
 },
   mounted() {
     this.getTenants()
     document.title = 'Tenants | The Perfect Landlord'
+    localStorage.setItem("pageType", "landlord")
   },
   methods: {
     showFilter() {
           this.filterVisible = !this.filterVisible;
     },
     async getTenants() {
-      const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
+      const config = {'Authorization': 'Token d8b19cf836fcdd3ce64b776a1de6f3600164a329'}
 
       await axios
         .get('/landlord/tenants/', config)

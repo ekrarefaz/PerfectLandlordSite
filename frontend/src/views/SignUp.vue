@@ -67,6 +67,9 @@ export default {
             errors: []
         }
     },
+    mounted(){
+            localStorage.setItem("pageType", "common")
+    },
     methods: {
         submitForm() {
             this.errors = []
