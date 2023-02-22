@@ -64,7 +64,8 @@ jobs:
     - name: Collect website and django static into nginx container build
       run: |
         cp -r frontend/dist/* nginx/html/.
-        cp -r backend/static/* nginx/html/.
+        mkdir -p nginx/html/static
+        cp -r backend/static/* nginx/html/static/.
 
     - name: Build docker images
       run: |
