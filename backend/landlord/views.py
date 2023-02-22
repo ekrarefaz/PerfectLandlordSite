@@ -93,7 +93,7 @@ class PropertyDetails(APIView):
 
 class ProfileView(APIView):
     """
-    API endpoint that allows all tenants to be viewed.
+    API endpoint that user own profile to be viewed
     """
 
     def get(self, request, format=None):
