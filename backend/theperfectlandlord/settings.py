@@ -51,8 +51,8 @@ INSTALLED_APPS = [
     'agent',
     'tenant',
 
-    'property',
-    'user'
+#     'property',
+#     'user'
 ]
 
 CORS_ALLOWED_ORIGINS = [
