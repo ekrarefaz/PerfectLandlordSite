@@ -1,5 +1,4 @@
 <template>
-  <LandlordSubNav/>
   <div v-if="!filterVisible">
     <div class="container">
     <div class="box" v-for="property in myProperties">
@@ -244,13 +243,14 @@ export default {
   mounted() {
     this.getMyProperties()
     document.title = 'My Properties | The Perfect Landlord'
+    localStorage.setItem("pageType", "tenant")
   },
   methods: {
     showFilter(){
             this.filterVisible = !this.filterVisible
     },
     async getMyProperties() {
-      const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
+      const config = {'Authorization': 'Token d8b19cf836fcdd3ce64b776a1de6f3600164a329'}
 
       await axios
         .get('/landlord/my-properties/', config)

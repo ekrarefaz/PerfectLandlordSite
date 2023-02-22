@@ -5,7 +5,7 @@
         </div>
         <h3 class="profile-name">Ekrar Efaz</h3>
         <p class="about">Tenant</p>
-        <button class="btn">Logout</button>
+        <button class="btn">Details</button>
     </div>
 </template>
 <style scoped>

@@ -25,7 +25,10 @@
 
         },
         created(){
-                setTimeout(()=> this.loaded = false, 2000)
+            setTimeout(()=> this.loaded = false, 2000)
+        },
+        mounted(){
+            localStorage.setItem("pageType", "common")
         }
     }
 

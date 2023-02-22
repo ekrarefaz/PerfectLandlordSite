@@ -2,20 +2,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;700;900&display=swap" rel="stylesheet">
   <nav>
     <div class="box-shadow">
-      <div class="section logo">
-        <span class="white">ThePerfect</span><span class="green">Landlord</span>
-      </div>
+        <div class="section logo">
+            <router-link to="/"><span class="white">ThePerfect</span><span class="green">Landlord</span></router-link>
+          </div>
       <div class="section">
         <ul>
-          <li><router-link to="/" class="active">Home</router-link></li>
-            <li><router-link to="/properties">Properties</router-link></li>
-            <li><router-link to="/tenant-profile">Profile</router-link></li>
+          <li><router-link to="/properties" class="active">Match with Properties</router-link></li>
+            <li><router-link to="/saved-properties">My Collections</router-link></li>
+            <li><router-link to="/tenant-profile">My Profile</router-link></li>
         </ul>
       </div>
     </div>
   </nav>
   </template>
-  <style>
+  <style scoped>
   :root {
     --gray: grey;
     --black: #000;

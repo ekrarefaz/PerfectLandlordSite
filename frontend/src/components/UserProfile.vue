@@ -5,7 +5,7 @@
         </div>
         <h3 class="profile-name">{{ profile.user.first_name }}</h3>
         <p class="about">{{ profile.user.groups[0] }}</p>
-        <button class="btn">Logout</button>
+        <button class="btn">Details</button>
     </div>
 </template>
 <style scoped>

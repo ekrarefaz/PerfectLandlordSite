@@ -3,7 +3,7 @@
 <nav>
   <div class="box-shadow">
     <div class="section logo">
-      <span class="white">ThePerfect</span><span class="green">Landlord</span>
+      <router-link to="/"><span class="white">ThePerfect</span><span class="green">Landlord</span></router-link>
     </div>
     <div class="section">
       <ul>
@@ -17,7 +17,7 @@
   </div>
 </nav>
 </template>
-<style>
+<style scoped>
 :root {
   --gray: grey;
   --black: #000;
@@ -25,7 +25,7 @@
   --green: maroon;
   --body-background: #fff;
   --hover-color: grey;
-  --header-background: #000;
+  --header-background: white ;
   --anchor-color: #fff;
   --heading-color: #b2b2b2;
   --paragraph-color: #b2b2b2;

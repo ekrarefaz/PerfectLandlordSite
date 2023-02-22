@@ -163,7 +163,7 @@ body {
 
 <script>
     import axios from 'axios'
-
+    import LandlordNav from '@/components/Landlord/LandlordNav.vue'
     export default{
         data(){
             return{
@@ -199,7 +199,7 @@ body {
                 this.$router.push('/')
             },
             async getLandlordProfile() {
-            const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
+            const config = {'Authorization': 'Token d8b19cf836fcdd3ce64b776a1de6f3600164a329'}
 
             await axios
                 .get('landlord/users', config)
@@ -214,6 +214,10 @@ body {
         },
         mounted(){
             this.getLandlordProfile()
+            localStorage.setItem("pageType", "landlord")
+        },
+        components:{
+            LandlordNav
         }
     }
 </script>

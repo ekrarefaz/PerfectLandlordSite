@@ -9,7 +9,9 @@ import Tenants from '../views/LandlordView/Tenants.vue';
 import About from '../views/CommonView/About.vue';
 import MyProfile from '../views/CommonView/MyProfile.vue';
 import LandlordProfile from '../views/LandlordView/LandlordProfile.vue';
-import InspectionCard from '../components/Tenant/InspectionCard.vue';
+import MyProperties from '../views/LandlordView/MyProperties.vue';
+import TenantInspection from '@/components/Tenant/TenantInspection.vue';
+import SavedProperties from '@/views/TenantView/SavedProperties.vue'
 
 const routes = [
   {
@@ -58,8 +60,8 @@ const routes = [
   },
   {
     path: '/:property_slug/inspections',
-    name: 'inspections',
-    component: InspectionCard,
+    name: 'tenant-inspections',
+    component: TenantInspection,
     // meta:{
     //   requiredLogin:true
     // }
@@ -73,7 +75,7 @@ const routes = [
     // }
   },
   {
-    path: '/profile',
+    path: '/tenant-profile',
     name: 'profile',
     component: MyProfile,
     // meta:{
@@ -84,6 +86,22 @@ const routes = [
     path: '/landlord-profile',
     name: 'landlordprofile',
     component: LandlordProfile,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/landlord-properties',
+    name: 'landlord-properties',
+    component: MyProperties,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/saved-properties',
+    name: 'saved-properties',
+    component: SavedProperties,
     // meta:{
     //   requiredLogin:true
     // }
