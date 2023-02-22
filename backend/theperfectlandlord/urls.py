@@ -15,8 +15,8 @@ urlpatterns = [
     path('api/agent/', include('agent.urls')),
     path('api/tenant/', include('tenant.urls')),
 
-    # App API v2
-    path('api/v2/property/', include('property.urls')),
-    path('api/v2/user/', include('user.urls')),
+#     # App API v2
+#     path('api/v2/property/', include('property.urls')),
+#     path('api/v2/user/', include('user.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
