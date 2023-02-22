@@ -7,7 +7,7 @@ import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/CommonView/LogIn.vue';
 import Tenants from '../views/LandlordView/Tenants.vue';
 import About from '../views/CommonView/About.vue';
-import UserProfile from '../views/TenantView/UserProfile.vue';
+import MyProfile from '../views/CommonView/MyProfile.vue';
 import LandlordProfile from '../views/LandlordView/LandlordProfile.vue';
 import InspectionCard from '../components/Tenant/InspectionCard.vue';
 
@@ -75,7 +75,7 @@ const routes = [
   {
     path: '/profile',
     name: 'profile',
-    component: UserProfile,
+    component: MyProfile,
     // meta:{
     //   requiredLogin:true
     // }
