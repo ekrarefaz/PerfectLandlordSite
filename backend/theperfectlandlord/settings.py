@@ -30,7 +30,7 @@ else:
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-yjked$jd+sy%qtve2f!p6)=!_!58fotoi@toa5#g9=w_^#bc^_'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -49,11 +49,15 @@ INSTALLED_APPS = [
 
     'landlord',
     'agent',
-    'tenant'
+    'tenant',
+
+    'property',
+    'user'
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
+    "https://203.16.241.202"
 ]
 
 MIDDLEWARE = [
