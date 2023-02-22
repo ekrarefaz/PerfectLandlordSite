@@ -9,6 +9,7 @@ from rest_framework.decorators import api_view
 from rest_framework import viewsets
 
 from rest_framework import permissions
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 
 from .models import Property, Profile
@@ -20,6 +21,7 @@ class UserList(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
+    authentication_classes = [TokenAuthentication]
     permission_classes = [permissions.IsAuthenticated]
 
 class GroupList(viewsets.ModelViewSet):
