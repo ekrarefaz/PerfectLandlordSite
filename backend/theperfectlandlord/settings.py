@@ -47,12 +47,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
 
-    'landlord',
-    'agent',
-    'tenant',
-
-#     'property',
-#     'user'
+    'property',
+    'user',
+    'inspection',
+    'application'
 ]
 
 CORS_ALLOWED_ORIGINS = [
