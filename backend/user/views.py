@@ -13,7 +13,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.models import Token
 
 from .models import Profile
-from .serializers import ProfileSerializer
+from .serializers import ProfileSerializer, ProfileFormSerializer
 
 class Signup(APIView):
     """
@@ -24,7 +24,7 @@ class Signup(APIView):
     - Data:{
         "user": {
             "username": "landlord2",
-            "password': "testest123456"
+            "password": "testest123456"
         },
         "bio": "halohalo ini landlord2"
     }
@@ -32,18 +32,29 @@ class Signup(APIView):
     Response    : A list of properties owned by user
     """
     def post(self, request, format=None):
+        # Retrieve user data
+        user_data = request.data['user']
+        user = User.objects.create(**user_data)
+
+        # Retrieve group
+        role = request.data['role']
+
+        # Add user to group
+        group = Group.objects.get(name=role)
+        group.user_set.add(user)
+
         # Assign user to data
-        serializer = ProfileSerializer(data=request.data)
+        serializer = ProfileFormSerializer(data=request.data)
 
         if serializer.is_valid():            
-            serializer.save()
+            serializer.save(user_id=user.id)
             return Response(serializer.data)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class MyProfile(APIView):
     """
-    Desc        : Displays a list of all properties as long as user is logged in for tenants to browse
+    Desc        : Displays the details of a user
     """
 
     authentication_classes = [authentication.TokenAuthentication]
