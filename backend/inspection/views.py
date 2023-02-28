@@ -34,7 +34,7 @@ class ViewInspection(APIView):
     Response    : List of available inspection times for a property
     """
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         # Retrieve Property
         property_id = request.data["property_id"]
         property = Property.objects.get(id=property_id)
