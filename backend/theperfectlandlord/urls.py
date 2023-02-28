@@ -10,13 +10,9 @@ urlpatterns = [
     path('api/auth/', include('djoser.urls')),
     path('api/auth/', include('djoser.urls.authtoken')),
 
-    # App API
-    path('api/landlord/', include('landlord.urls')),
-    path('api/agent/', include('agent.urls')),
-    path('api/tenant/', include('tenant.urls')),
-
-#     # App API v2
-#     path('api/v2/property/', include('property.urls')),
-#     path('api/v2/user/', include('user.urls')),
+    # App API v2
+    path('api/v2/property/', include('property.urls')),
+    path('api/v2/user/', include('user.urls')),
+    path('api/v2/inspection/', include('inspection.urls')),
+    path('api/v2/application/', include('application.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
