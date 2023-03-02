@@ -10,14 +10,12 @@
         <li><router-link to="/" class="active">Home</router-link></li>
           <li><router-link to="/log-in">Login</router-link></li>
           <li><router-link to="/sign-up">Signup</router-link></li>
-          <li><router-link to="/profile">Profile</router-link></li>
-
       </ul>
     </div>
   </div>
 </nav>
 </template>
-<style scoped>
+<style>
 :root {
   --gray: grey;
   --black: #000;

@@ -15,7 +15,7 @@
     </div>
   </nav>
   </template>
-  <style scoped>
+  <style>
   :root {
     --gray: grey;
     --black: #000;

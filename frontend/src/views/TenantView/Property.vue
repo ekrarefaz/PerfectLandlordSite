@@ -2,37 +2,42 @@
     <TenantSubNav/>
     <div class="page-property">
         <div class="address-heading">
-            <h1 class="address">{{ property.address }}</h1>
+            <h1 class="address">8/3 Kooyonkoot Road</h1>
         </div>
 
         <div class="main-section">
             <div clas="section1">
-                <figure @click="changeImage">
-                    <img v-bind:src="property.get_image" v-show="image" class="main-image">
-                    <img v-bind:src="property.get_thumbnail" v-show="!image" class="thumbnail">
-                </figure>
+                <div class="img-section">
+                    <figure @click="changeImage">
+                        <img src="@/assets/chris-robert--ryDtcapIas-unsplash.jpg" class="main-image">
+                        <!-- <img v-bind:src="property.get_image" v-show="image" class="main-image">
+                        <img v-bind:src="property.get_thumbnail" v-show="!image" class="thumbnail"> -->
+                    </figure>
+                </div>
+                <button class="applyBtn" @click="generateForm">Apply</button>
             </div>
             <div class="section2">
-                <p><strong><i class="fas fa-dollar-sign"></i> Price: </strong>{{ property.price }}/week</p>
-                <p> <strong>About Property: </strong>{{property.description}}</p>
-                <button class="applyBtn">Apply</button>
+                <p><strong><i class="fas fa-dollar-sign"></i> Price: </strong>685/week</p>
+                <p> <strong>About Property: </strong>This charming two-story home boasts three bedrooms, 
+                    two and a half bathrooms, and a spacious living room that's perfect for entertaining guests. 
+                    The kitchen features modern appliances and plenty of counter space for preparing delicious meals.</p>
             </div>
         </div>
         <label> Essentials <i class="fas fa-arrow-down"></i></label>
         <div class="advants">
             <div>
               <span>Bedrooms</span>
-              <div><i class="fas fa-th-large"></i><span>{{property.room}}</span></div>
+              <div><i class="fas fa-th-large"></i><span>3</span></div>
             </div>
             <div>
               <span>Bathrooms </span>
-              <div><i class="fas fa-shower"></i><span>{{property.bathroom}}</span></div>
+              <div><i class="fas fa-shower"></i><span>2</span></div>
             </div>
             <div>
               <span>Type </span>
               <div>
                 <i class="fas fa-vector-square"></i
-                ><span>{{property.type}}</span>
+                ><span>House</span>
               </div>
             </div>
           </div>
@@ -40,17 +45,17 @@
           <div class="advants features">
               <div>
                 <span>AirCon</span>
-                <div><i class="fas fa-snowflake"></i><span>{{property.airConditioning}}</span></div>
+                <div><i class="fas fa-snowflake"></i><span>Yes</span></div>
               </div>
               <div>
                 <span>Pool </span>
-                <div><i class="fas fa-swimming"></i><span>{{property.pool}}</span></div>
+                <div><i class="fas fa-swimming"></i><span>No</span></div>
               </div>
               <div>
                 <span>Gym </span>
                 <div>
                   <i class="fas fa-dumbbell"></i
-                  ><span>{{property.gym}}</span>
+                  ><span>Yes</span>
                 </div>
               </div>
             </div>
@@ -75,9 +80,9 @@
         margin: 30px;
         margin-top: 50px;
     }
-    img .main-image{
-        width: 85%;
-        height: 85%;
+    .main-image{
+        width: 65%;
+        height: 65%;
     }
     img .thumbnail{
         width: 150vw;
@@ -85,14 +90,15 @@
         
     }
     .main-section{
-        display: flex;
-        justify-content:space-evenly;
+        display: block;
+        justify-content:space-around;
         margin: 20px;
         padding: 25px;
     }
     .section1{
         padding: 25px;
         margin: 5px;
+        display: flex;
          
     }
     .section2{
@@ -159,6 +165,10 @@ export default {
             this.currentIndex -= 1;
         },
 
+        generateForm(){
+            this.$router.push('/application-form')
+        },
+
         async getProperty() {
             this.$store.commit("setIsLoading", true);
             const property_slug = this.$route.params.property_slug;
@@ -175,6 +185,7 @@ export default {
             this.$store.commit("setIsLoading", false);
         },
     },
+
     computed:{
         currentImg: function() {
             return this.images[Math.abs(this.currentIndex) % this.images.length];

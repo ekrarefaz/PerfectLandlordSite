@@ -5,14 +5,14 @@
       <div class="sectionNav">
         <ul>
             <li><router-link to="." class="active" >Details</router-link></li>
-            <li><router-link to="./inspections" >Inspections</router-link></li>
-            <li><router-link to="#">Applications</router-link></li>
+            <li><router-link to="/tenant-inspections" >Inspections</router-link></li>
+            <li><router-link to="/tenant-applications">Applications</router-link></li>
         </ul>
       </div>
     </div>
   </nav>
   </template>
-  <style >
+  <style scoped >
   :root {
     --gray: grey;
     --black: #000;

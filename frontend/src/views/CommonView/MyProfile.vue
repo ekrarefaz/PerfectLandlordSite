@@ -103,10 +103,10 @@ export default{
             this.$router.push('/')
         },
         async getProfile() {
-            const config = {'Authorization': 'Token 01ff9afdd60b6d23b92b5eed55dd87831a30bc9c'}
+            const config = {'Authorization': 'Token 2765877aa300599722b10dee28051cfda41b815b'}
 
             await axios
-                .get('landlord/profile', config)
+                .get('v2/user/profile/', config)
                 .then(response => {
                     console.log(response.data)
                     this.profile = response.data

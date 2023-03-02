@@ -7,11 +7,13 @@ import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/CommonView/LogIn.vue';
 import Tenants from '../views/LandlordView/Tenants.vue';
 import About from '../views/CommonView/About.vue';
-import MyProfile from '../views/CommonView/MyProfile.vue';
+import TenantProfile from '../views/TenantView/TenantProfile.vue';
 import LandlordProfile from '../views/LandlordView/LandlordProfile.vue';
 import MyProperties from '../views/LandlordView/MyProperties.vue';
 import TenantInspection from '@/components/Tenant/TenantInspection.vue';
-import SavedProperties from '@/views/TenantView/SavedProperties.vue'
+import SavedProperties from '@/views/TenantView/SavedProperties.vue';
+import TenantApplications from '@/views/TenantView/TenantApplications.vue';
+import ApplicationForm from '@/views/CommonView/ApplicationForm.vue';
 
 const routes = [
   {
@@ -59,7 +61,8 @@ const routes = [
     // }
   },
   {
-    path: '/:property_slug/inspections',
+    // path: '/:property_slug/inspections', // Slug Used Inspection Tab
+    path: '/tenant-inspections', // Hardcoded
     name: 'tenant-inspections',
     component: TenantInspection,
     // meta:{
@@ -77,7 +80,7 @@ const routes = [
   {
     path: '/tenant-profile',
     name: 'profile',
-    component: MyProfile,
+    component: TenantProfile,
     // meta:{
     //   requiredLogin:true
     // }
@@ -102,6 +105,22 @@ const routes = [
     path: '/saved-properties',
     name: 'saved-properties',
     component: SavedProperties,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/tenant-applications',
+    name: 'tenant-applications',
+    component: TenantApplications,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/application-form',
+    name: 'application-form',
+    component: ApplicationForm,
     // meta:{
     //   requiredLogin:true
     // }
