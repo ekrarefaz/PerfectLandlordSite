@@ -1,7 +1,9 @@
 <template>
     <div v-if="!filterVisible">
       <div class="container">
-      <div class="box" v-for="property in myProperties">
+
+      <!-- SERVERREAD -->
+      <!-- <div class="box" v-for="property in myProperties">
         <router-link v-bind:to="property.get_absolute_url">
           <div class="top">
             <img :src="property.get_thumbnail" alt="thumbnail" />
@@ -37,7 +39,47 @@
             <span>${{property.price}}/week</span>
           </div>
         </div>
+      </div> -->
+      
+      <!-- STATIC -->
+      <div class="box">
+        <router-link to="/property-details">
+          <div class="top">
+            <img src="@/assets/chris-robert--ryDtcapIas-unsplash.jpg" alt="thumbnail" />
+            <span>
+              <i class="fas fa-heart" @click="saveProperty"></i>
+            </span>
+          </div>
+        </router-link>
+        <div class="bottom">
+          <h3>27/3 Kooyongkoot Rad</h3>
+          <p>
+            Student Accomodation for new students
+          </p>
+          <div class="advants">
+            <div>
+              <span>Bedrooms</span>
+              <div><i class="fas fa-th-large"></i><span>1</span></div>
+            </div>
+            <div>
+              <span>Bathrooms</span>
+              <div><i class="fas fa-shower"></i><span>1</span></div>
+            </div>
+            <div>
+              <span>Type</span>
+              <div>
+                <i class="fas fa-vector-square"></i
+                ><span>Studio</span>
+              </div>
+            </div>
+          </div>
+          <div class="price">
+            <span>For Rent</span>
+            <span>$285/week</span>
+          </div>
+        </div>
       </div>
+      
     </div>
     </div>
   </template>
@@ -241,7 +283,7 @@
       LandlordSubNav,
   },
     mounted() {
-        this.getMyProperties()
+        // this.getMyProperties()
         document.title = 'My Properties | The Perfect Landlord'
         localStorage.setItem("pageType", "landlord")
     },
@@ -253,7 +295,7 @@
         const config = {'Authorization': 'Token d8b19cf836fcdd3ce64b776a1de6f3600164a329'}
   
         await axios
-          .get('/landlord/my-properties/', config)
+          .get('v2/properties/', config)
           .then(response => {
             console.log(response.data[0])
             this.myProperties = response.data

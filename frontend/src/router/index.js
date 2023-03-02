@@ -14,6 +14,9 @@ import TenantInspection from '@/components/Tenant/TenantInspection.vue';
 import SavedProperties from '@/views/TenantView/SavedProperties.vue';
 import TenantApplications from '@/views/TenantView/TenantApplications.vue';
 import ApplicationForm from '@/views/CommonView/ApplicationForm.vue';
+import PropertyDetails from '@/views/LandlordView/PropertyDetails.vue';
+import LandlordInspections from '@/views/LandlordView/LandlordInspections.vue';
+
 
 const routes = [
   {
@@ -97,6 +100,22 @@ const routes = [
     path: '/landlord-properties',
     name: 'landlord-properties',
     component: MyProperties,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/landlord-inspections',
+    name: 'landlord-inspections',
+    component: LandlordInspections,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
+    path: '/property-details',
+    name: 'property-details',
+    component: PropertyDetails,
     // meta:{
     //   requiredLogin:true
     // }
