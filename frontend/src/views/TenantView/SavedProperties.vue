@@ -1,88 +1,100 @@
 <template>
     <div v-if="!filterVisible">
       <div class="container">
-      <!-- SERVERREAD   -->
-      <!-- <div class="box" v-for="property in myProperties">
-        <router-link v-bind:to="property.get_absolute_url">
-          <div class="top">
-            <img :src="property.get_thumbnail" alt="thumbnail" />
-            <span>
-              <i class="fas fa-heart" @click="saveProperty"></i>
-            </span>
-          </div>
-        </router-link>
-        <div class="bottom">
-          <h3>{{property.address}}</h3>
-          <p>
-            {{property.description}}
-          </p>
-          <div class="advants">
-            <div>
-              <span>Bedrooms</span>
-              <div><i class="fas fa-th-large"></i><span>{{property.room}}</span></div>
+        <div class="box" v-for="property in savedProperties">
+          <router-link v-bind:to="property.get_absolute_url">
+            <div class="top">
+              <img :src="property.get_thumbnail" alt="thumbnail" />
+              <span>
+                <i class="fas fa-heart" @click="saveProperty"></i>
+              </span>
             </div>
-            <div>
-              <span>Bathrooms</span>
-              <div><i class="fas fa-shower"></i><span>{{property.bathroom}}</span></div>
-            </div>
-            <div>
-              <span>Type</span>
+          </router-link>
+          <div class="bottom">
+            <h3>{{ property.address }}</h3>
+            <p>
+              {{ property.description }}
+            </p>
+            <div class="advants">
               <div>
-                <i class="fas fa-vector-square"></i
-                ><span>{{property.type}}</span>
+                <span>Bedrooms</span>
+                <div><i class="fas fa-th-large"></i><span>{{ property.room }}</span></div>
+              </div>
+              <div>
+                <span>Bathrooms</span>
+                <div><i class="fas fa-shower"></i><span>{{ property.bathroom }}</span></div>
+              </div>
+              <div>
+                <span>Type</span>
+                <div>
+                  <i class="fas fa-vector-square"></i
+                  ><span>{{property.type}}</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="price">
-            <span>For Rent</span>
-            <span>${{property.price}}/week</span>
+            <div class="price">
+              <span>For Rent</span>
+              <span>${{property.price}}/week</span>
+            </div>
           </div>
         </div>
-      </div> -->
-  
-      <!-- HARDCODED -->
-      <div class="box">
-        <router-link to="/property">
-          <div class="top">
-            <img src="@/assets/chris-robert--ryDtcapIas-unsplash.jpg" alt="thumbnail" />
-            <span>
-              <i class="fas fa-heart" @click="saveProperty"></i>
-            </span>
-          </div>
-        </router-link>
-        <div class="bottom">
-          <h3>8/3 Bourke Street</h3>
-          <p>
-            Feel the hustle and bustle of the city
-          </p>
-          <div class="advants">
-            <div>
-              <span>Bedrooms</span>
-              <div><i class="fas fa-th-large"></i><span>3</span></div>
-            </div>
-            <div>
-              <span>Bathrooms</span>
-              <div><i class="fas fa-shower"></i><span>2</span></div>
-            </div>
-            <div>
-              <span>Type</span>
-              <div>
-                <i class="fas fa-vector-square"></i
-                ><span>House</span>
-              </div>
-            </div>
-          </div>
-          <div class="price">
-            <span>For Rent</span>
-            <span>$685/week</span>
-          </div>
-        </div>
-      </div>
     </div>
-    </div>
-  </template>
+  </div>
+</template>
+
+<script>
+  import axios from 'axios'
   
-  <style>
+  import PropertyBox from '@/components/Tenant/PropertyBox'
+  import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
+  import PropertyFilter from '@/components/Filters/PropertyFilter.vue'
+  import LandlordProfile from '../LandlordView/LandlordProfile.vue'
+  import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue'
+  
+  export default {
+    name: 'Home',
+    data() {
+      return {
+        savedProperties: [],
+        filterVisible: false,
+      }
+    },
+    components: {
+      PropertyBox,
+      LoggedInNavbar,
+      PropertyFilter,
+      LandlordProfile,
+      LandlordSubNav,
+  },
+    mounted() {
+      this.getSavedProperties()
+      document.title = 'My Properties | The Perfect Landlord'
+      localStorage.setItem("pageType", "tenant")
+    },
+    methods: {
+      showFilter(){
+              this.filterVisible = !this.filterVisible
+      },
+      async getSavedProperties() {
+        // Set logged-in user token as header
+        const config = {'Authorization': `Token ${localStorage.getItem("token")}`}   
+
+        // Get saved properties by the user
+        await axios
+          .get('v2/property/saved-properties/', config)
+          .then(response => {
+            console.log(response.data)
+            this.savedProperties = response.data
+          })
+          .catch(error => {
+            console.log(error)
+          })
+      },      
+    }
+  }
+</script>
+  
+<style>
   * {
     box-sizing: border-box;
     padding: 0;
@@ -256,56 +268,6 @@
     color: black;
     
   }
-  </style>
-  
-  <script>
-  import axios from 'axios'
-  
-  import PropertyBox from '@/components/Tenant/PropertyBox'
-  import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
-  import PropertyFilter from '@/components/Filters/PropertyFilter.vue'
-  import LandlordProfile from '../LandlordView/LandlordProfile.vue'
-  import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue'
-  
-  export default {
-    name: 'Home',
-    data() {
-      return {
-        myProperties: [],
-        filterVisible: false,
-      }
-    },
-    components: {
-      PropertyBox,
-      LoggedInNavbar,
-      PropertyFilter,
-      LandlordProfile,
-      LandlordSubNav,
-  },
-    mounted() {
-      // this.getMyProperties()
-      document.title = 'My Properties | The Perfect Landlord'
-      localStorage.setItem("pageType", "tenant")
-    },
-    methods: {
-      showFilter(){
-              this.filterVisible = !this.filterVisible
-      },
-      // async getMyProperties() {
-      //   const config = {'Authorization': 'Token b30af0a3e1a7d2b242aed331e57640d8bba6f731'}
-  
-      //   await axios
-      //     .get('v2/property/', config)
-      //     .then(response => {
-      //       console.log(response.data)
-      //       this.myProperties = response.data
-      //     })
-      //     .catch(error => {
-      //       console.log(error)
-      //     })
-      // },
-      
-    }
-  }
-  </script>
+</style>
+
   
