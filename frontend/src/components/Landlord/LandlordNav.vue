@@ -22,7 +22,7 @@
     --gray: grey;
     --black: #000;
     --white: #fff;
-    --green: maroon;
+    --green: white;
     --body-background: #fff;
     --hover-color: grey;
     --header-background: #000;

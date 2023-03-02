@@ -4,8 +4,11 @@
         <div class="cover-photo">
         </div>
         <h3 class="profile-name">8/3 Kooyongkoot Road</h3>
-        <p class="about">Processing</p>
-        <button class="btn">Details</button>
+        <p class="about">Status: {{status}} </p>
+        <router-link to="/application-form">
+            <button class="btn" v-if="!isApplied">Apply</button>
+        </router-link>
+        <i class="fas fa-check" v-if="isApplied">Applied</i>
     </div>
 </template>
 <style scoped>
@@ -28,6 +31,7 @@ body {
 }
 
 .card {
+    margin-top: 20px;
     padding: 15px;
     width: 350px;
     background: whitesmoke;
@@ -105,8 +109,14 @@ body {
 import TenantSubNav from '@/components/Tenant/TenantSubNav.vue';
 
     export default{
+        data(){
+            return{
+                status: "not applied",
+                isApplied: false,
+            }
+        },
         components:{
-    TenantSubNav
-}
+            TenantSubNav
+        }
     }
 </script>

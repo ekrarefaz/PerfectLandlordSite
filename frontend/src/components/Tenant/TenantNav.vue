@@ -20,16 +20,15 @@
     --gray: grey;
     --black: #000;
     --white: #fff;
-    --green: maroon;
+    --green: white;
     --body-background: #fff;
     --hover-color: grey;
     --header-background: #000;
     --anchor-color: #fff;
     --heading-color: #b2b2b2;
     --paragraph-color: #b2b2b2;
-    --anchor-active-color: maroon;
+    --anchor-active-color: white;
   }  
-  
   nav{
     width: 100vw;
     margin: 0;

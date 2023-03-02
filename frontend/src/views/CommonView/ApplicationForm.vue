@@ -8,10 +8,6 @@
               <input name="first-name" id="first-name" type="text" required />
             </div>
             <div class="col-4">
-              <label class="form-label">MI</label>
-              <input name="middle-initial" type="text" />
-            </div>
-            <div class="col-4">
               <label class="form-label">Last Name</label>
               <input name="last-name" type="text" required />
             </div>
@@ -229,8 +225,9 @@
                 <input name="emp2-title" type="text" />
               </div>
               <div class="col-3">
-                <label class="form-label">Payrate</label>
-                <input name="emp2-payrate" type="text" />
+                <label>Payslips</label>
+                <input type="file" ref="file">
+                <button @click="submitFile">Upload Payslips</button>
               </div>
             </div>
           </section>
@@ -406,8 +403,28 @@
         <input type="submit" value="Submit" />
       </form>
 </template>
-
-<style>
+<script>
+  export default{
+    data(){
+      return{
+        payslip: null,
+        identification: null,
+      }
+    },
+    methods:{
+      submitFile() {
+        const formData = new FormData();
+        formData.append('file', this.Images);
+        const headers = { 'Content-Type': 'multipart/form-data' };
+        axios.post('http://127.0.0.1/api/v2/application/submit', formData, { headers }).then((res) => {
+          res.data.files; // binary representation of the file
+          res.status; // HTTP status
+        });
+      },
+    }
+  }
+</script>
+<style scoped>
 form {
     max-width: 900px;
     margin: auto;
@@ -423,7 +440,7 @@ form {
     font-size: 1.5rem;
     color: #000;
     line-height: 1.15rem;
-    margin: 0;
+    margin: 50px;
   }
   
   h3.form-section-title {

@@ -2,7 +2,7 @@
   <div v-if="!filterVisible">
     <div class="container">
       <div class="box" v-for="property in properties">
-        <router-link v-bind:to="'properties'+property.get_absolute_url">
+        <router-link v-bind:to="'properties'+ property.get_absolute_url">
           <div class="top">
             <img :src="property.get_thumbnail" alt="thumbnail" />
             <span>
@@ -11,18 +11,18 @@
           </div>
         </router-link>
         <div class="bottom">
-          <h3>{{ property.address }}</h3>
+          <h3>{{property.address}}</h3>
           <p>
             {{ property.description }}
           </p>
           <div class="advants">
             <div>
               <span>Bedrooms</span>
-              <div><i class="fas fa-th-large"></i><span>{{ property.room }}</span></div>
+              <div><i class="fas fa-th-large"></i><span>{{property.room}}</span></div>
             </div>
             <div>
               <span>Bathrooms</span>
-              <div><i class="fas fa-shower"></i><span>{{ property.bathroom }}</span></div>
+              <div><i class="fas fa-shower"></i><span>{{property.bathroom}}</span></div>
             </div>
             <div>
               <span>Type</span>
@@ -89,35 +89,29 @@ export default {
           console.log(error)
         })
     },
-    
   }
 }
 </script>
 
-<style>
+<style scoped>
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
-.filter
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #eee;
-}
 
 .container {
   width: 1100px;
-  margin: 30px auto;
+  margin: 30px;
   display: flex;
   justify-content: space-between;
-  padding-left: 100px;
+  padding-left: 0px;
+  flex-wrap: wrap;
 }
 
 .container .box {
   width: calc((100% / 3) - 20px);
   background-color: white;
-  position: relative;
 }
 
 .container .box:hover{

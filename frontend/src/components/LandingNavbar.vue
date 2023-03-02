@@ -8,8 +8,8 @@
     <div class="section">
       <ul>
         <li><router-link to="/" class="active">Home</router-link></li>
-          <li><router-link to="/log-in">Login</router-link></li>
-          <li><router-link to="/sign-up">Signup</router-link></li>
+          <li><router-link to="/landlord-login">Login</router-link></li>
+          <li><router-link to="/landlord-signup">Signup</router-link></li>
       </ul>
     </div>
   </div>
@@ -20,14 +20,14 @@
   --gray: grey;
   --black: #000;
   --white: #fff;
-  --green: maroon;
+  --green: white;
   --body-background: #fff;
   --hover-color: grey;
   --header-background: white ;
   --anchor-color: #fff;
   --heading-color: #b2b2b2;
   --paragraph-color: #b2b2b2;
-  --anchor-active-color: maroon;
+  --anchor-active-color: white;
 }  
 
 nav{
@@ -161,3 +161,12 @@ header div:nth-child(1) img {
   }
 }
 </style>
+<script>
+  export default{
+    data(){
+      return{
+
+      }
+    },
+  }
+</script>

@@ -12,11 +12,15 @@
                         <img v-bind:src="property.get_image" class="main-image">                    
                     </figure>
                 </div>
-                <button class="applyBtn" @click="generateForm">Apply</button>
             </div>
             <div class="section2">
-                <p><strong><i class="fas fa-dollar-sign"></i> Price: </strong>{{property.price}}/week</p>
-                <p> <strong>About Property: </strong>{{ property.description }}</p>
+                <div class="sub-section-a">
+                    <p><strong><i class="fas fa-dollar-sign"></i> Price: </strong>{{property.price}}/week</p>
+                    <p> <strong>About Property: </strong>{{ property.description }}</p>
+                </div>
+                <div class="sub-section-b">
+                    <button class="applyBtn" @click="generateForm">Apply</button>
+                </div>
             </div>
         </div>
         <label> Essentials <i class="fas fa-arrow-down"></i></label>
@@ -182,6 +186,8 @@ export default {
         padding: 5px;
         font-size: 1.5em;
         margin: 5px;
+        display: flex;
+        justify-content: space-between;
     }
     .advants{
         background-color: beige;
@@ -189,6 +195,7 @@ export default {
         margin: 20px;
     }
     .applyBtn{
+        background-color: maroon;
         padding: 5px;
         margin-top: 15px;
         border: none;
@@ -198,7 +205,6 @@ export default {
         font-size: 0.8em;
     }
     .applyBtn:hover{
-        background-color: maroon;
         border: 2px solid black;
         transition: ease-in 0.35s;
         color: white;

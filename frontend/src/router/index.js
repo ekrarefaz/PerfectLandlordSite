@@ -7,15 +7,21 @@ import SignUp from '../views/SignUp.vue';
 import LogIn from '../views/CommonView/LogIn.vue';
 import Tenants from '../views/LandlordView/Tenants.vue';
 import About from '../views/CommonView/About.vue';
-import TenantProfile from '../views/TenantView/TenantProfile.vue';
+import UserProfile from '../views/CommonView/MyProfile.vue';
 import LandlordProfile from '../views/LandlordView/LandlordProfile.vue';
 import MyProperties from '../views/LandlordView/MyProperties.vue';
-import TenantInspection from '@/components/Tenant/TenantInspection.vue';
+import TenantInspection from '@/views/TenantView/TenantInspection.vue';
 import SavedProperties from '@/views/TenantView/SavedProperties.vue';
 import TenantApplications from '@/views/TenantView/TenantApplications.vue';
+import LandlordApplications from '@/views/LandlordView/LandlordApplications.vue';
 import ApplicationForm from '@/views/CommonView/ApplicationForm.vue';
 import PropertyDetails from '@/views/LandlordView/PropertyDetails.vue';
 import LandlordInspections from '@/views/LandlordView/LandlordInspections.vue';
+import LandlordLogin from '@/views/LandlordView/LandlordLogin.vue';
+import TenantLogin from '@/views/TenantView/TenantLogin.vue';
+import LandlordSignup from '@/views/LandlordView/LandlordSignup.vue';
+import TenantSignup from '@/views/TenantView/TenantSignup.vue';
+
 
 const routes = [
   {
@@ -32,6 +38,26 @@ const routes = [
     path: '/sign-up',
     name: 'signup',
     component: SignUp,
+  },
+  {
+    path: '/tenant-login',
+    name: 'tenant-login',
+    component: TenantLogin,
+  },
+  {
+    path: '/landlord-login',
+    name: 'landlord-login',
+    component: LandlordLogin,
+  },
+  {
+    path: '/tenant-signup',
+    name: 'tenant-signup',
+    component: TenantSignup,
+  },
+  {
+    path: '/landlord-signup',
+    name: 'landlord-signup',
+    component: LandlordSignup,
   },
   {
     path: '/log-in',
@@ -63,8 +89,7 @@ const routes = [
     // }
   },
   {
-    // path: '/:property_slug/inspections', // Slug Used Inspection Tab
-    path: '/tenant-inspections', // Hardcoded
+    path: '/properties/:property_slug/inspection', // Slug Used Inspection Tab
     name: 'tenant-inspections',
     component: TenantInspection,
     // meta:{
@@ -82,7 +107,7 @@ const routes = [
   {
     path: '/tenant-profile',
     name: 'profile',
-    component: TenantProfile,
+    component: UserProfile,
     // meta:{
     //   requiredLogin:true
     // }
@@ -90,7 +115,7 @@ const routes = [
   {
     path: '/landlord-profile',
     name: 'landlordprofile',
-    component: LandlordProfile,
+    component: UserProfile,
     // meta:{
     //   requiredLogin:true
     // }
@@ -112,6 +137,14 @@ const routes = [
     // }
   },
   {
+    path: '/landlord-applications',
+    name: 'landlord-applications',
+    component: LandlordApplications,
+    // meta:{
+    //   requiredLogin:true
+    // }
+  },
+  {
     path: '/property-details',
     name: 'property-details',
     component: PropertyDetails,
@@ -128,7 +161,7 @@ const routes = [
     // }
   },
   {
-    path: '/tenant-applications',
+    path: '/properties/:property_slug/applications',
     name: 'tenant-applications',
     component: TenantApplications,
     // meta:{

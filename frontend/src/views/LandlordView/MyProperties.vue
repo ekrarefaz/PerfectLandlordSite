@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div v-if="!filterVisible">
       <div class="container">
 
@@ -83,7 +83,8 @@
     </div>
     </div>
   </template>
-  <style>
+
+  <style scoped>
   * {
     box-sizing: border-box;
     padding: 0;
@@ -97,10 +98,10 @@
   
   .container {
     width: 1100px;
-    margin: 30px auto;
+    margin: 0px;
     display: flex;
     justify-content: space-between;
-    padding-left: 100px;
+    padding-left: 0px;
   }
   
   .container .box {
@@ -258,6 +259,7 @@
     
   }
   </style>
+
   <script>
   import axios from 'axios'
   
@@ -288,6 +290,9 @@
         localStorage.setItem("pageType", "landlord")
     },
     methods: {
+      saveProperty(){
+        // Adding property to save or shorlist
+      },
       showFilter(){
               this.filterVisible = !this.filterVisible
       },

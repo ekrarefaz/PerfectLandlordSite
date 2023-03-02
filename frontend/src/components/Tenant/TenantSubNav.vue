@@ -4,9 +4,9 @@
     <div class="box">
       <div class="sectionNav">
         <ul>
-            <li><router-link to="." class="active" >Details</router-link></li>
-            <li><router-link to="/tenant-inspections" >Inspections</router-link></li>
-            <li><router-link to="/tenant-applications">Applications</router-link></li>
+            <li><router-link to="./" class="active" >Details</router-link></li>
+            <li><router-link to="./inspection" >Inspections</router-link></li>
+            <li><router-link to="./applications">Applications</router-link></li>
         </ul>
       </div>
     </div>
@@ -16,7 +16,7 @@
   :root {
     --gray: grey;
     --black: #000;
-    --white: #fff;
+    --white: black;
     --green: maroon;
     --body-background: #fff;
     --hover-color: grey;
@@ -32,6 +32,8 @@
         align-content: center;
         align-self: center;
         text-align: center;
+        background-color: #000;
+        margin: auto;
     }
   .sectionNav{
     width: 100vw;
@@ -60,6 +62,7 @@
   
   a {
     text-decoration: none;
+    color: black;
   }
   
   a.active {

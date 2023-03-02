@@ -94,7 +94,7 @@
   }
 </script>
   
-<style>
+<style scoped>
   * {
     box-sizing: border-box;
     padding: 0;
@@ -108,10 +108,10 @@
   
   .container {
     width: 1100px;
-    margin: 30px auto;
+    margin: 0px;
     display: flex;
     justify-content: space-between;
-    padding-left: 100px;
+    padding-left: 0px;
   }
   
   .container .box {

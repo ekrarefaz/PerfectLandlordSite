@@ -1,43 +1,64 @@
 <template>
         <LandlordSubNav/>
         <div class="inspection-container">
-            <!-- DATABASEREAD -->
-            <!-- <div v-for="inspection in inspections" :key="inspection.id">
-            <div class="property-address">
-                <h1>{{inspection.address}}</h1>
-            </div>
-            <div class="datetime">
-                <div class="date">
-                    <strong>{{inspection.date}}</strong>
-                </div>
-                <div class="time">
-                    <strong>{{inspection.time}}</strong>
-                </div>
-            </div>
-            </div> -->
-    
-            <!-- HARDCODED -->
-            <div>
+            <div class="inspection1">
                 <div class="property-address">
                     <h1>8/3 Kooyongkoot Road</h1>
-                    <i class="fa fa-pen" @click="makeEditableForm" v-show="!editable"></i>
-                    <i class="fa fa-print" @click="saveUpdates" v-show="editable"></i>
-                    
+                    <div class="icon-section">
+                        <div class="icon-sub-section1">
+                            <i class="fa fa-pen" @click="makeEditableForm" v-show="!editable"> Edit</i>
+                            <i class="fa fa-print" @click="saveUpdates" v-show="editable"> Save</i>
+                        </div>
+                        <div class="icon-sub-section2">
+                            <i class="fa fa-plus" @click="addInspection"> Add Inspection Time</i>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="datetime">
                     <p> Date: 
-                        <span v-show="!editable" class="strong">{{inspectionDate}}</span>
+                        <span v-show="!editable" class="strong">{{inspectionDate[0]}}</span>
                         <span v-show="editable">
-                            <input type="text" v-model="inspectionDate">
+                            <input type="text" v-model="inspectionDate[0]">
                         </span>
                     </p>
                 </div>
                 <div class="datetime">
                 <p> Time: 
-                    <span v-show="!editable" class="strong">{{inspectionTime}}</span>
+                    <span v-show="!editable" class="strong">{{inspectionTime[0]}}</span>
                     <span v-show="editable">
-                        <input type="text" v-model="inspectionTime">
+                        <input type="text" v-model="inspectionTime[0]">
+                    </span>
+                </p>
+                </div>
+            </div>
+            <div class="inspection2" v-show="newInspection">
+                <div class="property-address">
+                    <h1>8/3 Kooyongkoot Road</h1>
+                    <div class="icon-section">
+                        <div class="icon-sub-section1">
+                            <i class="fa fa-pen" @click="makeEditableForm" v-show="!editable"> Edit</i>
+                            <i class="fa fa-print" @click="saveUpdates" v-show="editable"> Save</i>
+                        </div>
+                        <div class="icon-sub-section2">
+                            <i class="fa fa-plus">Add Inspection Time</i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="datetime">
+                    <p> Date: 
+                        <span v-show="!editable" class="strong">{{inspectionDate[1]}}</span>
+                        <span v-show="editable">
+                            <input type="text" v-model="inspectionDate[1]">
+                        </span>
+                    </p>
+                </div>
+                <div class="datetime">
+                <p> Time: 
+                    <span v-show="!editable" class="strong">{{inspectionTime[1]}}</span>
+                    <span v-show="editable">
+                        <input type="text" v-model="inspectionTime[1]">
                     </span>
                 </p>
                 </div>
@@ -47,6 +68,9 @@
     
     
 <style>
+    i:hover{
+        cursor: pointer;
+    }
     .property-address{
         text-align: center;
     }
@@ -75,9 +99,11 @@ import InspectionCard from '@/components/Tenant/InspectionCard.vue';
     export default{
         data(){
             return{
+                newInspection: false,
                 editable: false,
-                inspectionDate: "11/11/23",
-                inspectionTime: "13:15"
+                inspectionDate: ["11/11/23",""],
+                inspectionTime: ["13:35", ""]
+
             }
         },
         components: { InspectionCard, LandlordSubNav },
@@ -87,6 +113,9 @@ import InspectionCard from '@/components/Tenant/InspectionCard.vue';
             },
             saveUpdates(){
                 this.editable = false
+            },
+            addInspection(){
+                this.newInspection = true
             }
         }
 }

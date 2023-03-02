@@ -4,36 +4,32 @@
     <div class="box">
       <div class="sectionNav">
         <ul>
-            <li><router-link to="/property-details" class="active" >Details</router-link></li>
-            <li><router-link to="/landlord-inspections" >Inspections</router-link></li>
-            <li><router-link to="/landlord-applications">Applications</router-link></li>
+            <li><router-link to="/landlord-login">Landlord Login</router-link></li>
+            <li><router-link to="/tenant-login" >Tenant Login</router-link></li>
         </ul>
       </div>
     </div>
   </nav>
   </template>
-  <style scoped>
+  <style scoped >
   :root {
     --gray: grey;
     --black: #000;
-    --white: #fff;
+    --white: black;
     --green: maroon;
-    --body-background: #fff;
+    --body-background: black;
     --hover-color: grey;
     --header-background: #000;
     --anchor-color: black;
     --heading-color: #b2b2b2;
     --paragraph-color: #b2b2b2;
-    --anchor-active-color: maroon;
+    --anchor-active-color: white;
     }  
     .box{
         width:40%;
-        align-items: center;
-        align-content: center;
-        align-self: center;
-        text-align: center;
+        right: 430px;
         background-color: #000;
-        margin: auto;
+        margin: auto
     }
   .sectionNav{
     width: 100vw;
@@ -62,6 +58,7 @@
   
   a {
     text-decoration: none;
+    color: black;
   }
   
   a.active {

@@ -40,19 +40,33 @@
             <label> Essentials <i class="fas fa-arrow-down"></i></label>
             <div class="advants">
                 <div>
-                  <span>Bedrooms</span>
-                  <div><i class="fas fa-th-large"></i><span>3</span></div>
+                    <span v-show="!editable" class="strong">
+                        <span>Bedrooms</span>
+                        <div><i class="fas fa-th-large"></i><span>{{propertyRoom}}</span></div>
+                    </span>
+                    <span v-show="editable">
+                        <input type="number" v-model="propertyRoom">
+                    </span>
                 </div>
                 <div>
-                  <span>Bathrooms </span>
-                  <div><i class="fas fa-shower"></i><span>2</span></div>
+                    <span v-show="!editable" class="strong">
+                        <span>Bathrooms </span>
+                        <div><i class="fas fa-shower"></i><span>{{propertyBath}}</span></div>
+                    </span>
+                    <span v-show="editable">
+                        <input type="number" v-model="propertyBath">
+                    </span>
                 </div>
                 <div>
-                  <span>Type </span>
-                  <div>
-                    <i class="fas fa-vector-square"></i
-                    ><span>House</span>
-                  </div>
+                    <span v-show="!editable" class="strong">
+                        <span>Type </span>
+                        <div>
+                          <i class="fas fa-vector-square"></i><span>{{propertyType}}</span>
+                        </div>
+                    </span>
+                    <span v-show="editable">
+                        <input type="text" v-model="propertyType">
+                    </span>
                 </div>
               </div>
               <label> Features <i class="fas fa-arrow-down"></i></label>
@@ -68,8 +82,7 @@
                   <div>
                     <span>Gym </span>
                     <div>
-                      <i class="fas fa-dumbbell"></i
-                      ><span>Yes</span>
+                      <i class="fas fa-dumbbell"></i><span>Yes</span>
                     </div>
                   </div>
                 </div>
@@ -84,7 +97,13 @@ import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue';
             return{
                 editable: false,
                 propertyPrice: 550,
-                propertyBio: "This charming two-story home boasts three bedrooms, two and a half bathrooms, and a spacious living room that's perfect for entertaining guests. The kitchen features modern appliances and plenty of counter space for preparing delicious meals."
+                propertyBio: "This charming two-story home boasts three bedrooms, two and a half bathrooms, and a spacious living room that's perfect for entertaining guests. The kitchen features modern appliances and plenty of counter space for preparing delicious meals.",
+                propertyType: "Apartment",
+                propertyRoom: 3,
+                propertyBath: 2,
+                propertyAirCon: 1,
+                propertyPool: 0,
+                propertyGym: 1
             }
         },
         components:{
