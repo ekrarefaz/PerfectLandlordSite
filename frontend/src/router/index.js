@@ -17,7 +17,6 @@ import ApplicationForm from '@/views/CommonView/ApplicationForm.vue';
 import PropertyDetails from '@/views/LandlordView/PropertyDetails.vue';
 import LandlordInspections from '@/views/LandlordView/LandlordInspections.vue';
 
-
 const routes = [
   {
     path: '/',
@@ -56,8 +55,8 @@ const routes = [
     // }
   },
   {
-    path: '/:property_slug',
-    name: 'property-details',
+    path: '/properties/:property_slug',
+    name: 'Property',
     component: Property,
     // meta:{
     //   requiredLogin:true

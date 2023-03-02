@@ -2,7 +2,7 @@
   <div v-if="!filterVisible">
     <div class="container">
       <div class="box" v-for="property in properties">
-        <router-link v-bind:to="property.get_absolute_url">
+        <router-link v-bind:to="'properties'+property.get_absolute_url">
           <div class="top">
             <img :src="property.get_thumbnail" alt="thumbnail" />
             <span>
