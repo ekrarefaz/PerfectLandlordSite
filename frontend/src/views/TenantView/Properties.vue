@@ -1,17 +1,27 @@
 <template>
+  <div class="topbar">
+    <div v-show="!filterVisible">
+      <SearchBar/>
+    </div>
+    <i class="fas fa-filter filterIcon" @click="showFilter" v-show="!filterVisible">Filter</i>
+    <div v-show="filterVisible" class="filter">
+      <PropertyFilter/>
+    </div>
+  </div>
   <div v-if="!filterVisible">
     <div class="container">
       <div class="box" v-for="property in properties">
         <router-link v-bind:to="'properties'+ property.get_absolute_url">
           <div class="top">
             <img :src="property.get_thumbnail" alt="thumbnail" />
-            <span>
-              <i class="fas fa-heart" @click="saveProperty"></i>
-            </span>
           </div>
         </router-link>
         <div class="bottom">
           <h3>{{property.address}}</h3>
+          <!-- <span>
+            <i class="fas fa-star" @click="saveProperty" v-show="!saved"></i>
+            <i class="fas fa-heart" @click="saveProperty" v-show="saved"></i>
+          </span> -->
           <p>
             {{ property.description }}
           </p>
@@ -47,10 +57,10 @@
 import axios from 'axios'
 
 import PropertyBox from '@/components/Tenant/PropertyBox'
-import LoggedInNavbar from '@/components/LoggedInNavbar.vue'
 import PropertyFilter from '@/components/Filters/PropertyFilter.vue'
 import LandlordProfile from '../LandlordView/LandlordProfile.vue'
 import LandlordSubNav from '@/components/Landlord/LandlordSubNav.vue'
+import SearchBar from '@/components/Filters/SearchBar.vue'
 
 export default {
   name: 'Home',
@@ -58,14 +68,15 @@ export default {
     return {
       properties: [],
       filterVisible: false,
+      saved: false,
     }
   },
   components: {
     PropertyBox,
-    LoggedInNavbar,
     PropertyFilter,
     LandlordProfile,
     LandlordSubNav,
+    SearchBar,
 },
   mounted() {
     this.getProperties()
@@ -75,6 +86,9 @@ export default {
   methods: {
     showFilter(){
             this.filterVisible = !this.filterVisible
+    },
+    saveProperty(){
+      this.saved = !this.saved
     },
     async getProperties() {
       const config = {'Authorization': `Token ${localStorage.getItem("token")}`}  
@@ -108,6 +122,7 @@ export default {
   padding-left: 0px;
   flex-wrap: wrap;
 }
+
 
 .container .box {
   width: calc((100% / 3) - 20px);
@@ -261,5 +276,9 @@ button{
   align-items: center;
   color: black;
   
+}
+.filterIcon{
+  float: right;
+  margin: 30px;
 }
 </style>

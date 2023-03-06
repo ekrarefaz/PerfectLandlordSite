@@ -5,7 +5,7 @@
                 <img src='@/assets/logo.png' class='profile'>
             </div>
             <h3 class='profile-name'>{{ profile.get_full_name}}</h3>
-            <p class='about'>{{ profile.user.groups[0].name}}</p>
+            <!-- <p class='about'>{{ profile.user.groups[0].name}}</p> -->
             <div class='btnSection'>
                 <button class='btn' @click='makeEditableForm' v-show='!editable'>Edit</button>
                 <button class='btn' @click='saveUpdates' v-show='editable'>Save</button>
@@ -17,7 +17,7 @@
             <h3>Profile Details</h3>
             <div class='profile-info'>
                 <p> Full Name: 
-                    <span v-show='!editable' class='strong'>{{ profile.get_full_name}}</span>
+                    <span v-show='!editable' class='strong'>{{ profile.first_name}}</span>
                     <span v-show='editable'>
                         <input type='text' v-model='profile.first_name'>
                     </span>
@@ -25,13 +25,13 @@
                 <p> Date of Birth: 
                     <span v-show='!editable' class='strong'>{{ profile.birth_date}}</span>
                     <span v-show='editable'>
-                        <input type='text' v-model='landlordAge'>
+                        <input type='text' v-model='profile.birth_date'>
                     </span>
                 </p>
                 <p> About
-                    <span v-show='!editable' class='strong'>I am great</span>
+                    <span v-show='!editable' class='strong'>{{profile.bio}}</span>
                     <span v-show='editable'>
-                        <input type='text' v-model='landlordBio'>
+                        <input type='text' v-model='profile.bio'>
                     </span>
                 </p>
             </div>
@@ -110,6 +110,7 @@ export default{
                 .then(response => {
                     console.log(response.data)
                     this.profile = response.data
+                    console.log(this.profile)
                 })
                 .catch(error => {
                     console.log(error)

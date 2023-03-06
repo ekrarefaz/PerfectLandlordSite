@@ -1,7 +1,6 @@
 <template>
     <TenantSubNav/>
     <div class="inspection-container"> 
-        <div>
             <div class="property-address">
                 <h1>8/3 Kooyongkoot Road</h1>             
             </div>
@@ -12,36 +11,146 @@
                 <div class="time">
                     <strong>Time: {{time}}</strong>
                 </div>
-                <div class="register">
-                    <i class="fas fa-user-plus" @click="registerInspection">Register</i>
+                <div>
+                    <i class="fas fa-plus" @click="showModal = true">Register</i>
                 </div>
             </div>
-
         </div>
-    </div>
+            <ModalInspectionRegister v-if="showModal">
+                <div class="page-sign-up">
+                    <div class="columns">
+                        <div class="column is-4 is-offset-4">
+                            <h1 class="title">Inspection Registration</h1>
+                            <form @submit.prevent="submitForm">
+                                <div class="field">
+                                    <label>Email</label>
+                                    <div class="control">
+                                        <input type="text" class="input" v-model="email">
+                                    </div>
+                                </div>
+            
+                                <div class="field">
+                                    <label>First Name</label>
+                                    <div class="control">
+                                        <input type="text" class="input" v-model="fname">
+                                    </div>
+                                </div>
+            
+                                <div class="field">
+                                    <label>Phone</label>
+                                    <div class="control">
+                                        <input type="number" class="input" v-model="phone">
+                                    </div>
+                                </div>
+            
+                                <div class="field">
+                                    <div class="control">
+                                        <button class="button is-dark" @click="registerInspection">Register</button>                                        
+                                        <button class="button is-dark" @click="showModal=false">Cancel</button>
+                                    </div>
+                                </div>
+                                <hr>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </ModalInspectionRegister>
 </template>
 
 <script>
+import axios from 'axios'
 import TenantSubNav from '@/components/Tenant/TenantSubNav.vue';
+import RegisterInspection from '@/components/Tenant/RegisterInspection.vue';
+import ModalInspectionRegister from '@/components/Tenant/ModalInspectionRegister.vue';
 
     export default{
     data() {
         return {
+            email: "",
+            fname: "",
+            phone: "",
             inspections: null,
-            time: "13:45",
-            date: "11/11/23",
+            time: "",
+            date: "",
+
+            showModal: false,
         };
     },
-    methods: {
-        registerInspection() {
-            // REGISTER INSPECTION 
-        }
+
+    mounted(){
+        this.getInspections()
     },
-    components: { TenantSubNav }
+
+    methods: {
+
+        modalToggle(){
+            this.showModal = true
+        },
+        async getInspections() {
+            const config = {'Authorization': `Token ${localStorage.getItem("token")}`}  
+
+            await axios
+                .get('v2/inspection/view/', config)
+                .then(response => {
+                console.log(response.data)
+                this.inspections = response.data
+                console.log(this.inspections)
+                })
+                .catch(error => {
+                console.log(error)
+                })
+        },
+        registerInspection() {
+            if (!this.errors.length) {
+                const formData = {
+                    email: this.email,
+                    fname: this.fname,
+                    phone: this.phone
+                }
+
+                axios
+                    .post("v2/inspection/create/", formData)
+                    .then(response => {
+                        toast({
+                            message: 'Registered fo',
+                            type: 'is-success',
+                            dismissible: true,
+                            pauseOnHover: true,
+                            duration: 2000,
+                            position: 'bottom-right',
+                        })
+
+                        this.$router.push('/log-in')
+                    })
+                    .catch(error => {
+                        if (error.response) {
+                            for (const property in error.response.data) {
+                                this.errors.push(`${property}: ${error.response.data[property]}`)
+                            }
+
+                            console.log(JSON.stringify(error.response.data))
+                        } else if (error.message) {
+                            this.errors.push('Something went wrong. Please try again')
+                            
+                            console.log(JSON.stringify(error))
+                        }
+                    })
+            }
+        },
+    },
+    components: {
+    TenantSubNav,
+    RegisterInspection,
+    ModalInspectionRegister
+},
 }
 </script>
 
-<style>
+<style scoped>
+
+.title{
+    color: white;
+}
 .inspection-container{
     border: solid 2px maroon;
     margin: 20px;

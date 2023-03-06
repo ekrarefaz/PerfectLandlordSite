@@ -1,11 +1,10 @@
 <template>
     <form>  
         <div class="form-content">
+            <h1>Property Type</h1>
             <div class="form-section-1">
-                <h4>House Type</h4>
                 <input type="checkbox" value="House">
-                <label> House</label>
-                <input type="checkbox" value="Apartment">
+                <label> House </label>
                 <label> Apartment/Flat</label>
                 <input type="checkbox" value="Town House">
                 <label> Town House</label>
@@ -22,13 +21,6 @@
                     <option value="On-Street">on-street</option>
                     <option value="None">None</option>
                 </select>
-                <label>Religion</label>
-                <select>
-                    <option value="Catholic">Catholic</option>
-                    <option value="Muslim">Muslim</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Buddhist">Buddhist</option>
-                </select>
                 <div class="room">
                     <label>Rooms</label>
                     <input type="number" name="minroom" >
@@ -42,8 +34,6 @@
                     <option value="Semi">Semi Furnished</option>
                     <option value="None">Not Furnished</option>
                 </select>
-            </div>
-            <div class="form-section-3">
                 <h4>Property Features</h4>
                 <input type="checkbox" value="Heating">
                 <label> Heating</label>
@@ -57,10 +47,13 @@
                 <label>Pool</label>
             </div>
         </div>
-        <button type="submit"> Submit </button>
-    </form>
+        <button>
+            <i class="fas fa-filter" @click="filterProperties">Filter Properties</i>
+        </button>
+        
+        </form>
 </template>
-<style>
+<style scoped>
     form {
         max-width: 700px;
         margin: 10px auto;
@@ -91,14 +84,15 @@
 
     button {
         padding: 19px 39px 18px 39px;
-        color: #FFF;
+        color: black;
         font-size: 10px;
         text-align: center;
         font-style: normal;
         border-radius: 5px;
-        width: 100%;
+        width: 30%;
         box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.1) inset;
         margin-bottom: 10px;
+        margin-left: 200px;
     }
       
     select {
@@ -117,9 +111,9 @@
         margin: 20px;
     }
     .form-section-1{
-        margin: 10px;
+        margin: 0px;
         align-content: left;
-        padding: 10px;
+        padding: 25px;
     }
     .form-section-2{
         margin: 10px;
@@ -141,3 +135,12 @@
 
     }
 </style>
+<script>
+    export default{
+        methods:{
+            filterProperties(){
+                // Connect filter backend
+            }
+        }
+    }
+</script>
