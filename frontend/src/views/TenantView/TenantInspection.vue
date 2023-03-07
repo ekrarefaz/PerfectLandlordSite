@@ -61,7 +61,7 @@
 import axios from 'axios'
 import TenantSubNav from '@/components/Tenant/TenantSubNav.vue';
 import RegisterInspection from '@/components/Tenant/RegisterInspection.vue';
-import ModalInspectionRegister from '@/components/Tenant/ModalInspectionRegister.vue';
+import ModalInspectionRegister from '@/components/Modals/ModalInspectionRegister.vue';
 
     export default{
     data() {
@@ -109,7 +109,7 @@ import ModalInspectionRegister from '@/components/Tenant/ModalInspectionRegister
                 }
 
                 axios
-                    .post("v2/inspection/create/", formData)
+                    .post("v2/inspection/register/", formData)
                     .then(response => {
                         toast({
                             message: 'Registered fo',
@@ -119,9 +119,9 @@ import ModalInspectionRegister from '@/components/Tenant/ModalInspectionRegister
                             duration: 2000,
                             position: 'bottom-right',
                         })
-
-                        this.$router.push('/log-in')
+                        this.$router.push('.')
                     })
+                    
                     .catch(error => {
                         if (error.response) {
                             for (const property in error.response.data) {

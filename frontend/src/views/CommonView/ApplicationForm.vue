@@ -1,94 +1,63 @@
 <template>
     <form id="job-form">
-        <section>
-          <h2 class="form-section-title">Personal Information</h2>
+      <label>Personal Information</label>
+        <section class="personal-info-wrapper">
           <div class="row">
             <div class="col-4">
               <label class="form-label">First Name</label>
-              <input name="first-name" id="first-name" type="text" required />
+              <input v-model="firstname" id="first-name" type="text" required />
             </div>
             <div class="col-4">
               <label class="form-label">Last Name</label>
-              <input name="last-name" type="text" required />
+              <input v-model="lastname" type="text" required />
             </div>
           </div>
           <div class="row">
             <div class="col-7">
               <label class="form-label">Email</label>
-              <input name="email" type="email" required />
+              <input v-model="email" type="email" required />
             </div>
           </div>
           <div class="row">
             <div class="col-9">
               <label class="form-label">Street Address</label>
-              <input name="address-1" type="text" placeholder="Address Line 1" />
+              <input v-model="address1" type="text" placeholder="Address Line 1" />
             </div>
           </div>
           <div class="row">
             <div class="col-9">
-              <input name="address-2" type="text" placeholder="Address Line 2" />
+              <input v-model="address2" type="text" placeholder="Address Line 2" />
             </div>
           </div>
           <div class="row">
             <div class="col-4">
-              <input name="city" type="text" placeholder="City" />
+              <input v-model="city" type="text" placeholder="City" />
             </div>
             <div class="col-4">
-              <input name="state" type="text" placeholder="State" />
+              <input v-model="state" type="text" placeholder="State" />
             </div>
             <div class="col-4">
-              <input name="zipcode" type="text" placeholder="Zip Code" />
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-3">
-              <label class="form-label">Home Phone</label>
-              <input name="home-phone" type="text" />
+              <input v-model="zipcode" type="text" placeholder="Zip Code" />
             </div>
           </div>
           <div class="row">
             <div class="col-3">
               <label class="form-label">Mobile Phone</label>
-              <input name="mobile-phone" type="text" />
-            </div>
-          </div>
-          
-          <div class="row">
-            <div class="col-3">
-              <label class="form-label">Are you 18 or older?</label>
-              <input name="older-than-18" type="radio" value="yes" required /><span class="radio-selection"> Yes</span> <input name="older-than-18" type="radio" value="no" /><span class="radio-selection"> No</span>
-            </div>
-            <div class="col-3">
-              <label class="form-label">If yes, Date of Birth</label>
-              <input name="date-of-birth" type="date" />
-            </div>
-          </div>
-      
-          <div class="row">
-            <div class="col-6">
-              <label class="form-label">Have you been convicted of a misdemeanor or felony, or been incarcerated in connection with a felony, in the past seven years?</label>
-              <input name="convicted" type="radio" value="yes" required /><span class="radio-selection"> Yes</span> <input name="convicted" type="radio" value="no" /><span class="radio-selection"> No</span>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <label class="form-label">If yes, please explain:</label>
-              <input name="convicted-reason" type="text" />
+              <input v-model="phone" type="text" />
             </div>
           </div>
         </section>
       
-      
-        <section>
-          <h2 class="form-section-title">Prior Tenancy</h2>
+      <label>Rental Profile</label>
+        <section class="renter-profile-wrapper">
           <section class="form-field-section">
-            <h3 class="form-section-title">Current or Most Recent</h3>
+            <label>Current or Most Recent</label>
           </section>
           <section class="form-field-section">
             <div class="row">
               <div class="col-9">
                 <label class="form-label">Agent/Landlord</label>
-                <input name="emp1-employer" type="text" />
+                <input v-model="agent" type="text" />
               </div>
             </div>
           </section>
@@ -97,23 +66,23 @@
             <div class="row">
               <div class="col-9">
                 <label class="form-label">Address</label>
-                <input name="emp1-address-1" type="text" placeholder="Address Line 1" />
+                <input v-model="prevAddress1" type="text" placeholder="Address Line 1" />
               </div>
             </div>
             <div class="row">
               <div class="col-9">
-                <input name="emp1-address-2" type="text" placeholder="Address Line 2" />
+                <input v-model="prevAddress2" type="text" placeholder="Address Line 2" />
               </div>
             </div>
             <div class="row">
               <div class="col-4">
-                <input name="emp1-city" type="text" placeholder="City" />
+                <input v-model="prevCity" type="text" placeholder="City" />
               </div>
               <div class="col-4">
-                <input name="emp1-state" type="text" placeholder="State" />
+                <input v-model="prevState" type="text" placeholder="State" />
               </div>
               <div class="col-4">
-                <input name="emp1-zip" type="text" placeholder="Zip Code" />
+                <input v-model="prevZip" type="text" placeholder="Zip Code" />
               </div>
             </div>
           </section>
@@ -122,118 +91,42 @@
             <div class="row">
               <div class="col-3">
                 <label class="form-label">Phone</label>
-                <input name="emp1-phone" type="text" />
+                <input v-model="prevAgentPhone" type="text" />
               </div>
             </div>
-      
-            <div class="row">
-              <div class="col-5">
-                <label class="form-label">Name of Immediate Contact</label>
-                <input name="emp1-supervisor" type="text" />
-              </div>
-            </div>
+
           </section>
           <section class="form-field-section">
             <div class="row">
               <div class="col-3">
                 <label class="form-label">Start Date</label>
-                <input name="emp1-start-date" type="date" />
+                <input v-model="prevStartDate" type="date" />
               </div>
               <div class="col-3">
                 <label class="form-label">End Date</label>
-                <input name="emp1-end-date" type="date" />
-              </div>
-            </div>
-          </section>
-
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-12">
-                <label class="form-label">Reason for Leaving</label>
-                <input name="emp1-reason-for-leaving" type="text" />
-              </div>
-            </div>
-          </section>
-      
-          <section class="form-field-section">
-            <h3 class="form-section-title">Cuurent Employment</h3>
-          </section>
-      
-      
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-9">
-                <label class="form-label">Employer</label>
-                <input name="emp2-employer" type="text" />
-              </div>
-            </div>
-          </section>
-      
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-9">
-                <label class="form-label">Address</label>
-                <input name="emp2-address-1" type="text" placeholder="Address Line 1" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-9">
-                <input name="emp2-address-2" type="text" placeholder="Address Line 2" />
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-4">
-                <input name="emp2-city" type="text" placeholder="City" />
-              </div>
-              <div class="col-4">
-                <input name="emp2-state" type="text" placeholder="State" />
-              </div>
-              <div class="col-4">
-                <input name="emp2-zip" type="text" placeholder="Zip Code" />
-              </div>
-            </div>
-          </section>
-      
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-3">
-                <label class="form-label">Phone</label>
-                <input name="emp2-phone" type="text" />
-              </div>
-            </div>
-      
-            <div class="row">
-              <div class="col-5">
-                <label class="form-label">Name of Immediate Supervisor</label>
-                <input name="emp2-supervisor" type="text" />
-              </div>
-            </div>
-          </section>
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-3">
-                <label class="form-label">Start Date</label>
-                <input name="emp2-start-date" type="date" />
-              </div>
-            </div>
-          </section>
-      
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-5">
-                <label class="form-label">Position/Job Title</label>
-                <input name="emp2-title" type="text" />
+                <input v-model="prevEndDate" type="date" />
               </div>
               <div class="col-3">
-                <label>Payslips</label>
+                <label>Proof of Residence</label>
                 <input type="file" ref="file">
-                <button @click="submitFile">Upload Payslips</button>
+                <button @click="submitResidenceProof"></button>
               </div>
             </div>
           </section>
 
           <section class="form-field-section">
-            <h3 class="form-section-title">Prior Employment</h3>
+            <div class="row">
+              <div class="col-12">
+                <label class="form-label">Reason for Leaving</label>
+                <input v-model="prevLeaveReason" type="text" />
+              </div>
+            </div>
+          </section>
+          </section>
+          <label>Employment History</label>
+          <section class="employment-history-wrapper">
+          <section class="form-field-section">
+            <label>Current Employment</label>
           </section>
       
       
@@ -241,7 +134,7 @@
             <div class="row">
               <div class="col-9">
                 <label class="form-label">Employer</label>
-                <input name="emp3-employer" type="text" />
+                <input v-model="employer" type="text" />
               </div>
             </div>
           </section>
@@ -250,23 +143,23 @@
             <div class="row">
               <div class="col-9">
                 <label class="form-label">Address</label>
-                <input name="emp3-address-1" type="text" placeholder="Address Line 1" />
+                <input v-model="empAddress1" type="text" placeholder="Address Line 1" />
               </div>
             </div>
             <div class="row">
               <div class="col-9">
-                <input name="emp3-address-2" type="text" placeholder="Address Line 2" />
+                <input v-model="empAddress2" type="text" placeholder="Address Line 2" />
               </div>
             </div>
             <div class="row">
               <div class="col-4">
-                <input name="emp3-city" type="text" placeholder="City" />
+                <input v-model="empcity" type="text" placeholder="City" />
               </div>
               <div class="col-4">
-                <input name="emp3-state" type="text" placeholder="State" />
+                <input v-model="empstate" type="text" placeholder="State" />
               </div>
               <div class="col-4">
-                <input name="emp3-zip" type="text" placeholder="Zip Code" />
+                <input v-model="empzip" type="text" placeholder="Zip Code" />
               </div>
             </div>
           </section>
@@ -275,26 +168,16 @@
             <div class="row">
               <div class="col-3">
                 <label class="form-label">Phone</label>
-                <input name="emp3-phone" type="text" />
+                <input v-model="empphone" type="text" />
               </div>
             </div>
-      
-            <div class="row">
-              <div class="col-5">
-                <label class="form-label">Name of Immediate Supervisor</label>
-                <input name="emp3-supervisor" type="text" />
-              </div>
-            </div>
+    
           </section>
           <section class="form-field-section">
             <div class="row">
               <div class="col-3">
-                <label class="form-label">Start Date</label>
-                <input name="emp3-start-date" type="date" />
-              </div>
-              <div class="col-3">
-                <label class="form-label">End Date</label>
-                <input name="emp3-end-date" type="date" />
+                <label class="form-label">Income</label>
+                <input type="number"/>
               </div>
             </div>
           </section>
@@ -302,121 +185,162 @@
           <section class="form-field-section">
             <div class="row">
               <div class="col-5">
-                <label class="form-label">Position/Job Title</label>
-                <input name="emp3-title" type="text" />
+                <label class="form-label">Frequency</label>
+                <select>
+                  <option value="weekly">Weekly</option>
+                  <option value="fortnightly">Fortnightly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
               </div>
               <div class="col-3">
-                <label class="form-label">Payrate</label>
-                <input name="emp3-payrate" type="text" />
-              </div>
-            </div>
-          </section>
-      
-          <section class="form-field-section">
-            <div class="row">
-              <div class="col-12">
-                <label class="form-label">Reason for Leaving</label>
-                <input name="emp3-reason-for-leaving" type="text" />
-              </div>
-              <div class="col-12">
-                <label class="form-label">May We Contact?</label>
-                <input name="emp3-can-contact" type="radio" value="yes" /><span class="radio-selection"> Yes</span> <input name="emp3-can-contact" type="radio" value="no" /><span class="radio-selection"> No</span>
+                <label>Payslips (3 recent)</label>
+                <input type="file" ref="file">
+                <button @click="submitIncomeProof"></button>
               </div>
             </div>
           </section>
         </section>
       
-        <section>
-          <h2 class="form-section-title">Personal References</h2>
+        <label>Personal References</label>
+        <section class="reference-wrapper">
           <section class="form-field-section">
             <h4 class="form-section-title">Reference 1</h4>
             <div class="row">
               <div class="col-6">
                 <label class="form-label">Name</label>
-                <input name="ref1-name" type="text" />
+                <input v-model="refname" type="text" />
               </div>
               <div class="col-6">
                 <label class="form-label">Phone</label>
-                <input name="ref1-phone" type="text" />
+                <input v-model="ref1phone" type="text" />
               </div>
             </div>
             <div class="row">
               <div class="col-9">
                 <label class="form-label">Address</label>
-                <input name="ref1-address-1" type="text" placeholder="Address Line 1" />
+                <input v-model="ref1address1" type="text" placeholder="Address Line 1" />
               </div>
             </div>
             <div class="row">
               <div class="col-9">
-                <input name="ref1-address-2" type="text" placeholder="Address Line 2" />
+                <input v-model="ref1address2" type="text" placeholder="Address Line 2" />
               </div>
             </div>
             <div class="row">
               <div class="col-4">
-                <input name="ref1-city" type="text" placeholder="City" />
+                <input v-model="ref1city" type="text" placeholder="City" />
               </div>
               <div class="col-4">
-                <input name="ref1-state" type="text" placeholder="State" />
+                <input v-model="ref1state" type="text" placeholder="State" />
               </div>
               <div class="col-4">
-                <input name="ref1-zip" type="text" placeholder="Zip Code" />
+                <input v-model="ref1zip" type="text" placeholder="Zip Code" />
               </div>
             </div>
           </section>
       
-          <section class="form-field-section">
+          <!-- <section class="form-field-section">
             <h4 class="form-section-title">Reference 2</h4>
             <div class="row">
               <div class="col-6">
                 <label class="form-label">Name</label>
-                <input name="ref2-name" type="text" />
+                <input v-model="ref2name" type="text" />
               </div>
               <div class="col-6">
                 <label class="form-label">Phone</label>
-                <input name="ref2-phone" type="text" />
+                <input v-model="ref2phone" type="text" />
               </div>
             </div>
             <div class="row">
               <div class="col-9">
                 <label class="form-label">Address</label>
-                <input name="ref2-address-1" type="text" placeholder="Address Line 1" />
+                <input v-model="ref1address2" type="text" placeholder="Address Line 1" />
               </div>
             </div>
             <div class="row">
               <div class="col-9">
-                <input name="ref2-address-2" type="text" placeholder="Address Line 2" />
+                <input v-model="ref1address2" type="text" placeholder="Address Line 2" />
               </div>
             </div>
             <div class="row">
               <div class="col-4">
-                <input name="ref2-city" type="text" placeholder="City" />
+                <input v-model="ref2city" type="text" placeholder="City" />
               </div>
               <div class="col-4">
-                <input name="ref2-state" type="text" placeholder="State" />
+                <input v-model="ref2state" type="text" placeholder="State" />
               </div>
               <div class="col-4">
-                <input name="ref2-zip" type="text" placeholder="Zip Code" />
+                <input v-model="ref2zip" type="text" placeholder="Zip Code" />
               </div>
             </div>
-          </section>
+          </section> -->
         </section>
         <input type="submit" value="Submit" />
       </form>
 </template>
 <script>
+  import axios from 'axios'
+
   export default{
     data(){
       return{
         payslip: null,
         identification: null,
+
+        // Personal
+        firstname: "",
+        lastname: "",
+        email:"",
+        address1: "",
+        address2: "",
+        city: "",
+        state: "",
+        zip: "",
+        phone: "",
+        //Residential
+        agent: "",
+        prevAddress1: "",
+        prevAddress2: "",
+        prevCity: "",
+        prevState: "",
+        prevZip:"",
+        prevAgentPhone:"",
+        prevStartDate:"",
+        prevEndDate:"",
+        prevLeaveReason:"",
+        //Employment
+        employer: "",
+        empAddress1: "",
+        empAddress2:"",
+        empcity:"",
+        empstate:"",
+        empzip:"",
+        empphone:"",
+        //Reference
+        refname:"",
+        ref1phone:"",
+        ref1address1:"",
+        ref1address2:"",
+        ref1city:"",
+        ref1state:"",
+        ref1zip:""
       }
     },
     methods:{
-      submitFile() {
+      submitIncomeProof() {
         const formData = new FormData();
         formData.append('file', this.Images);
         const headers = { 'Content-Type': 'multipart/form-data' };
-        axios.post('http://127.0.0.1/api/v2/application/submit', formData, { headers }).then((res) => {
+        axios.post('v2/application/income/add', formData, { headers }).then((res) => {
+          res.data.files; // binary representation of the file
+          res.status; // HTTP status
+        });
+      },
+      submitResidenceProof() {
+        const formData = new FormData();
+        formData.append('file', this.Images);
+        const headers = { 'Content-Type': 'multipart/form-data' };
+        axios.post('v2/application/residential/add', formData, { headers }).then((res) => {
           res.data.files; // binary representation of the file
           res.status; // HTTP status
         });
@@ -433,7 +357,34 @@ form {
   body {
     padding: 20px 20px;
   }
-  
+  .personal-info-wrapper{
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+  .renter-profile-wrapper{
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+  .employment-history-wrapper{
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
+  .reference-wrapper{
+    border: 2px solid grey;
+    border-radius: 5px;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+  }
   h2.form-title,
   h2.form-section-title {
     font-family: 'Open Sans Condensed', Helvetica, sans-serif;

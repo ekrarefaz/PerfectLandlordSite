@@ -55,10 +55,10 @@
 </template>
 <style scoped>
     form {
-        max-width: 700px;
+        max-width: 75%;
         margin: 10px auto;
         padding: 10px 20px;
-        background: #f4f7f8;
+        background: grey;
         border-radius: 8px;
         z-index: 2;
     }

@@ -168,10 +168,10 @@ export default {
           this.filterVisible = !this.filterVisible;
     },
     async getTenants() {
-      const config = {'Authorization': 'Token d8b19cf836fcdd3ce64b776a1de6f3600164a329'}
+      const config = {'Authorization': `Token ${localStorage.getItem("token")}`}  
 
       await axios
-        .get('/landlord/tenants/', config)
+        .get('v2/user/tenants', config)
         .then(response => {
           console.log(response.data)
           this.tenants = response.data
