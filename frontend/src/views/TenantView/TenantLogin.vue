@@ -111,7 +111,6 @@ export default {
 
                             // Set role in local storage
                             localStorage.setItem("role", "Tenant")
-                            this.$router.go()
 
                             // Route to landlord page
                             const toPath = this.$route.query.to || "/properties";                            
