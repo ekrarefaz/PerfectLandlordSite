@@ -83,7 +83,7 @@ class MyProfile(APIView):
 
 class Tenants(APIView):
     """
-    Desc        : Displays a list of all properties as long as user is logged in for tenants to browse
+    Desc        : Displays a list of all tenants as long as user is logged in
     """
 
     authentication_classes = [authentication.TokenAuthentication]
@@ -92,19 +92,19 @@ class Tenants(APIView):
     """
     Requires    : Authorization headers (token). Example: 
                     { 'Authorization' : 'Token    01ff9afdd60b6d23b92b5eed55dd87831a30bc9c' }
-    Response    : List of all properties in db
+    Response    : List of all tenants in db
     """
-
-    def post(self, request, format=None):
+    
+    def get(self, request, format=None):
         # Retrieve token
         tokenString = request.headers['Authorization'].split()[1]
 
-        # Retrieve User
+        # Retrieve group
         token = Token.objects.get(key=tokenString)
-        user = User.objects.get(username=token.user)
+        group = Group.objects.get(name="Tenant")
 
-        # Retrieve all properties
-        queryset = Property.objects.all()
-        serializer = PropertySerializer(queryset, many=True)
+        # Retrieve profiles
+        profiles = Profile.objects.filter(user__groups=group)
+        serializer = ProfileSerializer(profiles, many=True)
 
         return Response(serializer.data)
