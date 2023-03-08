@@ -1,11 +1,11 @@
 <template>
-  <div v-if="pageType == 'common'">
+  <div v-if="userRole == ''">
     <LandingNavbar/>
   </div>
-  <div v-else-if="pageType == 'landlord'">
+  <div v-else-if="userRole == 'Landlord'">
     <LandlordNav/>
   </div>
-  <div v-else-if="pageType == 'tenant'">
+  <div v-else-if="userRole == 'Tenant'">
     <TenantNav/>
   </div>
   <body>
@@ -36,7 +36,7 @@ import TenantNav from './components/Tenant/TenantNav.vue';
 export default {
     data() {
         return {
-          pageType: 'common'
+          userRole: localStorage.getItem("role")
         };
     },
     components: { LandingNavbar, LandlordNav, TenantNav },
@@ -50,12 +50,9 @@ export default {
             axios.defaults.headers.common["Authorization"] = "";
         }
     },
-    created(){
-      this.getPageType()
-    },
     methods:{
-      getPageType(){
-        this.pageType = localStorage.getItem("pageType")
+      getUserRole(){
+        this.userRole = localStorage.getItem("role")
       }
     }
 }

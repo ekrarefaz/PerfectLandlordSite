@@ -77,12 +77,12 @@ export default {
     LandlordProfile,
     LandlordSubNav,
     SearchBar,
-},
+  },
   mounted() {
     this.getProperties()
     document.title = 'My Properties | The Perfect Landlord'
     localStorage.setItem("pageType", "tenant")
-  },
+  },  
   methods: {
     showFilter(){
             this.filterVisible = !this.filterVisible
@@ -90,18 +90,24 @@ export default {
     saveProperty(){
       this.saved = !this.saved
     },
-    async getProperties() {
-      const config = {'Authorization': `Token ${localStorage.getItem("token")}`}  
+    async getProperties() {  
+      // Print request
+      axios.interceptors.request.use(request => {
+        console.log('Starting Request', JSON.stringify(request, null, 2))
+        return request
+      })
 
+      // Request
       await axios
-        .get('v2/property/properties/', config)
+        .get('v2/property/properties/')
         .then(response => {
           console.log(response.data)
           this.properties = response.data
         })
         .catch(error => {
           console.log(error)
-        })
+        });
+      
     },
   }
 }
