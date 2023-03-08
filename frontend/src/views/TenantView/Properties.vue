@@ -1,7 +1,14 @@
 <template>
   <div class="topbar">
-    <div v-show="!filterVisible">
-      <SearchBar/>
+    <div class="searchBar" v-show="!filterVisible">
+      <form method="get" action="/properties">
+        <input id="searchQueryInput" type="text" name="query" placeholder="Search"/>
+
+        <button id="searchQuerySubmit" type="submit" @click="searchQuery">
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#666666" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+          </svg>
+        </button>
+      </form>
     </div>
     <i class="fas fa-filter filterIcon" @click="showFilter" v-show="!filterVisible">Filter</i>
     <div v-show="filterVisible" class="filter">
@@ -69,6 +76,7 @@ export default {
       properties: [],
       filterVisible: false,
       saved: false,
+      query: ''
     }
   },
   components: {
@@ -79,9 +87,21 @@ export default {
     SearchBar,
   },
   mounted() {
-    this.getProperties()
     document.title = 'My Properties | The Perfect Landlord'
     localStorage.setItem("pageType", "tenant")
+
+    // Get search query
+    let uri = window.location.search.substring(1)
+    let params = new URLSearchParams(uri)
+
+    if (params.get('query')) {
+        this.query = params.get('query')
+
+        this.searchQuery()
+    }
+    else {
+      this.getProperties()
+    }
   },  
   methods: {
     showFilter(){
@@ -90,7 +110,7 @@ export default {
     saveProperty(){
       this.saved = !this.saved
     },
-    async getProperties() {  
+    async getProperties() {      
       // Print request
       axios.interceptors.request.use(request => {
         console.log('Starting Request', JSON.stringify(request, null, 2))
@@ -106,9 +126,27 @@ export default {
         })
         .catch(error => {
           console.log(error)
-        });
+        }); 
       
     },
+    async searchQuery(){    
+      const data = {
+          'query': this.query
+      }
+
+      // Search properties by address
+      await axios
+          .post('v2/property/search/', data)
+          .then(response => {
+            console.log(response.data)
+
+            // Store filtered properties in data
+            this.properties = response.data
+          })
+          .catch(error => {
+          c 
+          })
+  }
   }
 }
 </script>
@@ -286,5 +324,37 @@ button{
 .filterIcon{
   float: right;
   margin: 30px;
+}
+
+/* Searchbar */
+.searchBar {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    
+#searchQueryInput {
+    width: 100%;
+    height: 2.8rem;
+    background: #f5f5f5;
+    outline: none;
+    border: none;
+    border-radius: 1.625rem;
+    padding: 0 3.5rem 0 1.5rem;
+    font-size: 1rem;
+}
+
+#searchQuerySubmit {
+    width: 3.5rem;
+    height: 2.8rem;
+    margin-left: -3.5rem;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+#searchQuerySubmit:hover {
+    cursor: pointer;
 }
 </style>
