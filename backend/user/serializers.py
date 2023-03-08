@@ -22,7 +22,7 @@ class UserFormSerializer(serializers.ModelSerializer):
         fields = ['username', 'email', 'password']
 
 class ProfileSerializer(serializers.HyperlinkedModelSerializer):
-    user = UserFormSerializer()
+    user = UserSerializer()
     
     class Meta:
         model = Profile
