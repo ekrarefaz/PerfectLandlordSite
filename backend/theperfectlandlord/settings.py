@@ -94,19 +94,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'theperfectlandlord.wsgi.application'
 
-# if IN_PRODUCTION:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'perfectlandlord_db',
-#             'USER': 'perfectlandlord_user',
-#             'PASSWORD': 'i4jf8HU7gY6Fytf7TYt6th5Ch',
-#             'HOST': 'pgdatabase',  # Or an IP Address that your DB is hosted on
-#             'PORT': '5432',
-#         }
-#     }
-# else:
-DATABASES = {
+if IN_PRODUCTION:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'perfectlandlord_db',
+            'USER': 'perfectlandlord_user',
+            'PASSWORD': 'i4jf8HU7gY6Fytf7TYt6th5Ch',
+            'HOST': 'pgdatabase',  # Or an IP Address that your DB is hosted on
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': BASE_DIR / 'db.sqlite3',
