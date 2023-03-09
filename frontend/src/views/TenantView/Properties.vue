@@ -25,10 +25,9 @@
         </router-link>
         <div class="bottom">
           <h3>{{property.address}}</h3>
-          <!-- <span>
-            <i class="fas fa-star" @click="saveProperty" v-show="!saved"></i>
-            <i class="fas fa-heart" @click="saveProperty" v-show="saved"></i>
-          </span> -->
+          <span>
+            <i class="fas fa-star" @click="saveProperty"></i>
+          </span>
           <p>
             {{ property.description }}
           </p>

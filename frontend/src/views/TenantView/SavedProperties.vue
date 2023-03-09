@@ -5,13 +5,11 @@
           <router-link v-bind:to="property.get_absolute_url">
             <div class="top">
               <img :src="property.get_thumbnail" alt="thumbnail" />
-              <span>
-                <i class="fas fa-heart" @click="saveProperty"></i>
-              </span>
             </div>
           </router-link>
           <div class="bottom">
             <h3>{{ property.address }}</h3>
+            <i class="fas fa-trash" @click="removeFavorite(property)"></i>
             <p>
               {{ property.description }}
             </p>
@@ -75,6 +73,8 @@
       showFilter(){
               this.filterVisible = !this.filterVisible
       },
+
+      // Read favorites from database
       async getSavedProperties() {
         // Set logged-in user token as header
         const config = {'Authorization': `Token ${localStorage.getItem("token")}`}   
@@ -89,7 +89,22 @@
           .catch(error => {
             console.log(error)
           })
-      },      
+      },
+
+      // Remove from Favorites
+      async removeFavorite(property){
+        // Set logged-in user token as header
+        const config = {'Authorization': `Token ${localStorage.getItem("token")}`}  
+
+        await axios
+          .delete(`v2/property/saved-properties/${property}`, config)
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.log(error)
+          })        
+      }      
     }
   }
 </script>

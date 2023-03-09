@@ -59,6 +59,7 @@
 
 <script>
 import axios from 'axios'
+import { toast } from 'bulma-toast'
 import TenantSubNav from '@/components/Tenant/TenantSubNav.vue';
 import RegisterInspection from '@/components/Tenant/RegisterInspection.vue';
 import ModalInspectionRegister from '@/components/Modals/ModalInspectionRegister.vue';
@@ -101,48 +102,31 @@ import ModalInspectionRegister from '@/components/Modals/ModalInspectionRegister
                 })
         },
         registerInspection() {
-            if (!this.errors.length) {
                 const formData = {
                     email: this.email,
                     fname: this.fname,
                     phone: this.phone
                 }
-
                 axios
                     .post("v2/inspection/register/", formData)
                     .then(response => {
                         toast({
-                            message: 'Registered fo',
+                            message: 'Registered',
                             type: 'is-success',
                             dismissible: true,
                             pauseOnHover: true,
                             duration: 2000,
                             position: 'bottom-right',
                         })
-                        this.$router.push('.')
-                    })
-                    
-                    .catch(error => {
-                        if (error.response) {
-                            for (const property in error.response.data) {
-                                this.errors.push(`${property}: ${error.response.data[property]}`)
-                            }
-
-                            console.log(JSON.stringify(error.response.data))
-                        } else if (error.message) {
-                            this.errors.push('Something went wrong. Please try again')
-                            
-                            console.log(JSON.stringify(error))
-                        }
+                        this.$router.push('./')
                     })
             }
         },
-    },
     components: {
-    TenantSubNav,
-    RegisterInspection,
-    ModalInspectionRegister
-},
+        TenantSubNav,
+        RegisterInspection,
+        ModalInspectionRegister
+    },
 }
 </script>
 

@@ -4,8 +4,8 @@
             <div class='cover-photo'>
                 <img src='@/assets/logo.png' class='profile'>
             </div>
-            <h3 class='profile-name'>{{ profile.get_full_name}}</h3>
-            <!-- <p class='about'>{{ profile.user.groups[0].name}}</p> -->
+            <h3 class='profile-name'>{{ profile.user.username}}</h3>
+            <p class='about'>{{ profile.user.groups}}</p>
             <div class='btnSection'>
                 <button class='btn' @click='makeEditableForm' v-show='!editable'>Edit</button>
                 <button class='btn' @click='saveUpdates' v-show='editable'>Save</button>
@@ -16,10 +16,10 @@
         <div class='card details' v-show='details'>
             <h3>Profile Details</h3>
             <div class='profile-info'>
-                <p> Full Name: 
-                    <span v-show='!editable' class='strong'>{{ profile.first_name}}</span>
+                <p> Username: 
+                    <span v-show='!editable' class='strong'>{{ profile.user.username}}</span>
                     <span v-show='editable'>
-                        <input type='text' v-model='profile.first_name'>
+                        <input type='text' v-model='profile.user.username'>
                     </span>
                 </p>
                 <p> Date of Birth: 
@@ -115,7 +115,19 @@ export default{
                 .catch(error => {
                     console.log(error)
                 })
+        },
+        async postUpdates(){
+            const config = {'Authorization': 'Token 2765877aa300599722b10dee28051cfda41b815b'}
+            const formData = {
+                profile: this.profile
             }
+
+            // POST CHANGED DATA
+            await axios
+            .post('v2/user/profile', formData)
+            // Incomplete
+
+        }
     }
 }
 </script>

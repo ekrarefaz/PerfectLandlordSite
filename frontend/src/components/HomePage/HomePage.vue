@@ -17,15 +17,6 @@
                 Our expert team verifies all listings and conducts thorough inspections to ensure that every detail is accurate and true. 
                 This means that tenants can trust that they are viewing properties that match the description, and landlords can trust that their properties are being marketed effectively.
             </p>
-
-            <router-link to="/properties" v-if="tenant">
-              Explore
-              <svg width="40" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/></svg>
-            </router-link>
-            <router-link to="/tenants" v-if="!tenant">
-                Explore
-                <svg width="40" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/></svg>
-              </router-link>
             <section class="controllers-section">
               <button id="back" @click="tenantActive">
                 Tenant
@@ -34,13 +25,20 @@
                 Landlord
               </button>
             </section>
+            <router-link to="/properties" v-if="tenant">
+              Explore
+              <svg width="40" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/></svg>
+            </router-link>
+            <router-link to="/tenants" v-if="!tenant">
+                Explore
+                <svg width="40" height="12" xmlns="http://www.w3.org/2000/svg"><path d="M34.05 0l5.481 5.527h.008v.008L40 6l-.461.465v.063l-.062-.001L34.049 12l-.662-.668 4.765-4.805H0v-1h38.206l-4.82-4.86L34.05 0z" fill="#000" fill-rule="nonzero"/></svg>
+            </router-link>
           </section>
         </section>
       </section>
     
       <!-- ROW 2 -->
       <section class="row-2">
-        <div id="img1"></div>
         <section>
           <h2>What are we <span class="highlight">About</span></h2>
           <p>

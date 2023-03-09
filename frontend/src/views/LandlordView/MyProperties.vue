@@ -3,13 +3,10 @@
       <div class="container">
 
       <!-- SERVERREAD -->
-      <!-- <div class="box" v-for="property in myProperties">
-        <router-link v-bind:to="property.get_absolute_url">
+      <div class="box" v-for="property in myProperties">
+        <router-link v-bind:to="'landlord-properties'+ property.get_absolute_url">
           <div class="top">
             <img :src="property.get_thumbnail" alt="thumbnail" />
-            <span>
-              <i class="fas fa-heart" @click="saveProperty"></i>
-            </span>
           </div>
         </router-link>
         <div class="bottom">
@@ -39,10 +36,10 @@
             <span>${{property.price}}/week</span>
           </div>
         </div>
-      </div> -->
+      </div>
       
       <!-- STATIC -->
-      <div class="box">
+      <!-- <div class="box">
         <router-link to="/property-details">
           <div class="top">
             <img src="@/assets/chris-robert--ryDtcapIas-unsplash.jpg" alt="thumbnail" />
@@ -78,7 +75,7 @@
             <span>$285/week</span>
           </div>
         </div>
-      </div>
+      </div> -->
       
     </div>
     </div>
@@ -102,6 +99,7 @@
     display: flex;
     justify-content: space-between;
     padding-left: 0px;
+    flex-wrap: wrap;
   }
   
   .container .box {
@@ -285,7 +283,7 @@
       LandlordSubNav,
   },
     mounted() {
-        // this.getMyProperties()
+        this.getMyProperties()
         document.title = 'My Properties | The Perfect Landlord'
         localStorage.setItem("pageType", "landlord")
     },
@@ -297,12 +295,12 @@
               this.filterVisible = !this.filterVisible
       },
       async getMyProperties() {
-        const config = {'Authorization': 'Token d8b19cf836fcdd3ce64b776a1de6f3600164a329'}
+        const config = {'Authorization': `Token ${localStorage.getItem("token")}`}  
   
         await axios
-          .get('v2/properties/', config)
+          .get('v2/property/my-properties/', config)
           .then(response => {
-            console.log(response.data[0])
+            console.log(response.data)
             this.myProperties = response.data
           })
           .catch(error => {

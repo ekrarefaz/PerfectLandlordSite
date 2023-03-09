@@ -145,7 +145,7 @@ const routes = [
     // }
   },
   {
-    path: '/property-details',
+    path: '/landlord-properties/:property_slug',
     name: 'property-details',
     component: PropertyDetails,
     // meta:{
