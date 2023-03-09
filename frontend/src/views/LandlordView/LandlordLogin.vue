@@ -61,6 +61,7 @@ export default {
     },
     mounted() {
         document.title = "Log In";
+        localStorage.setItem("pageType", "landlord")
     },
     methods: {        
         async submitForm() {
@@ -111,10 +112,10 @@ export default {
                             localStorage.setItem("user", this.username);
 
                             // Set role in local storage
-                            localStorage.setItem("role", 'Landlord')                            
+                            localStorage.setItem("role", "Landlord")                            
 
                             // Route to landlord page
-                            const toPath = this.$route.query.to || "/tenants";                                                                      
+                            const toPath = this.$route.query.to || "/tenants";                                                                  
                             this.$router.push(toPath);                              
                         }
                         else {

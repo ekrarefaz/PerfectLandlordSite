@@ -59,7 +59,7 @@ export default {
     },
     mounted() {
         document.title = "Log In";
-        localStorage.setItem("pageType", "common");
+        localStorage.setItem("pageType", "tenant")
     },
     methods: {
         async submitForm() {
