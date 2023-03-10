@@ -3,7 +3,7 @@
 <nav>
   <div class="box-shadow">
     <div class="section logo">
-      <router-link to="/"><span class="white">ThePerfect</span><span class="green">Landlord</span></router-link>
+      <router-link to="/"><span class="white">The</span><span class="highlight">Perfect</span><span class="white">Landlord</span></router-link>
     </div>
     <div class="section">
       <ul>
@@ -34,8 +34,8 @@ nav{
   width: 100vw;
   margin: 0;
 }
-.green {
-  color: var(--green);
+.highlight {
+  color: red;
 }
 
 .white {

@@ -142,9 +142,6 @@ export default {
             // Store filtered properties in data
             this.properties = response.data
           })
-          .catch(error => {
-          c 
-          })
   }
   }
 }

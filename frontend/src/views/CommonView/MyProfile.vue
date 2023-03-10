@@ -5,7 +5,7 @@
                 <img src='@/assets/logo.png' class='profile'>
             </div>
             <h3 class='profile-name'>{{ profile.user.username}}</h3>
-            <p class='about'>{{ profile.user.groups}}</p>
+            <p class='about'>{{ profile.user.groups[0].name}}</p>
             <div class='btnSection'>
                 <button class='btn' @click='makeEditableForm' v-show='!editable'>Edit</button>
                 <button class='btn' @click='saveUpdates' v-show='editable'>Save</button>

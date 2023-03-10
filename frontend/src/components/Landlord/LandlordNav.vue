@@ -3,14 +3,13 @@
   <nav>
     <div class="box-shadow">
       <div class="section logo">
-        <router-link to="/"><span class="white">ThePerfect</span><span class="green">Landlord</span></router-link>
+        <router-link to="/"><span class="white">The</span><span class="highlight">Perfect</span><span class="white">Landlord</span></router-link>
       </div>
       <div class="section">
         <ul>
           <li><router-link to="/tenants" class="active">Match With Tenants</router-link></li>
             <li><router-link to="/landlord-properties" class="active">My Properties</router-link></li>
             <li><router-link to="/landlord-profile" class="active">My Profile</router-link></li>
-            <li><router-link to="/landlord" class="active">Settings</router-link></li>
   
         </ul>
       </div>
@@ -22,7 +21,7 @@
     --gray: grey;
     --black: #000;
     --white: #fff;
-    --green: white;
+    --green: red;
     --body-background: #fff;
     --hover-color: grey;
     --header-background: #000;

@@ -4,9 +4,9 @@
     <div class="box">
       <div class="sectionNav">
         <ul>
-            <li><router-link to="/property-details" class="active" >Details</router-link></li>
-            <li><router-link to="/landlord-inspections" >Inspections</router-link></li>
-            <li><router-link to="/landlord-applications">Applications</router-link></li>
+            <li><router-link to="./" class="active" >Details</router-link></li>
+            <li><router-link to="./inspections" >Inspections</router-link></li>
+            <li><router-link to="./applications">Applications</router-link></li>
         </ul>
       </div>
     </div>

@@ -1,13 +1,5 @@
 <template>
-  <div v-if="pageType == 'common'">
-    <LandingNavbar/>
-  </div>
-  <div v-else-if="pageType == 'landlord'">
-    <LandlordNav/>
-  </div>
-  <div v-else-if="pageType == 'tenant'">
-    <TenantNav/>
-  </div>
+  <DynamicLoaderNav/>
   <body>
     <div id="wrapper">
       <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
@@ -29,6 +21,7 @@
 
 <script>
 import axios from 'axios'
+import DynamicLoaderNav from './components/Common/DynamicLoaderNav.vue';
 import LandingNavbar from './components/LandingNavbar.vue';
 import LandlordNav from './components/Landlord/LandlordNav.vue';
 import TenantNav from './components/Tenant/TenantNav.vue';
@@ -39,7 +32,7 @@ export default {
           pageType: 'common'
         };
     },
-    components: { LandingNavbar, LandlordNav, TenantNav },
+    components: { LandingNavbar, LandlordNav, TenantNav, DynamicLoaderNav },
     beforeCreate() {
         this.$store.commit("initialize");
         const token = this.$store.state.token;
@@ -50,7 +43,7 @@ export default {
             axios.defaults.headers.common["Authorization"] = "";
         }        
     },
-    created(){
+    beforeMount(){
       this.getPageType()
     },
     methods:{

@@ -141,7 +141,7 @@ const routes = [
     // }
   },
   {
-    path: '/landlord-inspections',
+    path: '/landlord-properties/:property_slug/inspections',
     name: 'landlord-inspections',
     component: LandlordInspections,
     // meta:{
@@ -149,7 +149,7 @@ const routes = [
     // }
   },
   {
-    path: '/landlord-applications',
+    path: '/landlord-properties/:property_slug/applications',
     name: 'landlord-applications',
     component: LandlordApplications,
     // meta:{

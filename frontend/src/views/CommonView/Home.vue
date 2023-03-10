@@ -27,6 +27,9 @@
         created(){
             setTimeout(()=> this.loaded = false, 2000)
         },
+        beforeMount(){
+            
+        },
         mounted(){
             localStorage.setItem("pageType", "common")
         }

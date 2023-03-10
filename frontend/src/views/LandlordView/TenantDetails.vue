@@ -18,9 +18,9 @@
         <div class="detail-section">
         <label>
              <Details>
-                <p><strong>Email: </strong></p>
-                <p><strong>DOB: </strong></p>
-                <p><strong>Location: </strong></p>
+                <p><strong>Email: </strong>tenant@mail.com</p>
+                <p><strong>DOB: </strong>11/11/11</p>
+                <p><strong>Location: </strong>Melbourne</p>
 
             </Details> 
         </label>
@@ -82,9 +82,7 @@ export default {
 </script>
 
 <style scoped>
-.page-tenant{
-    display: flex;
-}
+
     .main-image{
         width: 45%;
         height: 45%;

@@ -23,7 +23,7 @@
                             {{ property.price}}<em>/Week</em>
                         </span>
                         <span v-show="editable">
-                            <input type="text" v-model="propertyPrice">
+                            <input type="text" v-model="property.price">
                         </span>
                     </p>
                     <p> <strong>About: </strong>
@@ -31,7 +31,7 @@
                             {{ property.description }}
                         </span>
                         <span v-show="editable">
-                            <input type="text" v-model="propertyBio">
+                            <input type="text" v-model="property.description">
                         </span>
                     </p>
                 </div>
@@ -44,7 +44,7 @@
                         <div><i class="fas fa-th-large"></i><span>{{property.room}}</span></div>
                     </span>
                     <span v-show="editable">
-                        <input type="number" v-model="propertyRoom">
+                        <input type="number" v-model="property.room">
                     </span>
                 </div>
                 <div>
@@ -53,7 +53,7 @@
                         <div><i class="fas fa-shower"></i><span>{{property.bathroom}}</span></div>
                     </span>
                     <span v-show="editable">
-                        <input type="number" v-model="propertyBath">
+                        <input type="number" v-model="property.bathroom">
                     </span>
                 </div>
                 <div>
@@ -64,7 +64,7 @@
                         </div>
                     </span>
                     <span v-show="editable">
-                        <input type="text" v-model="propertyType">
+                        <input type="text" v-model="property.type">
                     </span>
                 </div>
               </div>

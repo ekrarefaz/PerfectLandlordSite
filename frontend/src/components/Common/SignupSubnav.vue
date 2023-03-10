@@ -5,7 +5,7 @@
       <div class="sectionNav">
         <ul>
             <li><router-link to="/landlord-signup">Landlord Signup</router-link></li>
-            <li><router-link to="/tenant-sigup" >Tenant Signup</router-link></li>
+            <li><router-link to="/tenant-signup" >Tenant Signup</router-link></li>
         </ul>
       </div>
     </div>

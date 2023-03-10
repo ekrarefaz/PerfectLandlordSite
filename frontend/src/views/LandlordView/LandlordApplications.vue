@@ -30,7 +30,8 @@
                         <p>I am interested in this property because I live nearby and would be easy for me to shift</p>
                     </div>
                 </div>
-                <div class="expand-info" v-show="detailedView">
+                <Details>
+                <div class="expand-info">
                     <label>Income</label>
                     <div class="income-details">
                         <p><strong>Source </strong>Part-Time Job</p>
@@ -43,6 +44,7 @@
                     <p><strong>Reference Contact </strong>0404786756</p>
                     <p><strong>Tenant History Proof </strong><i class="fa fa-file">Files </i></p>
                 </div>
+                </Details>
         </div>
         <div class="card card2">
             <div class="flex-section1">
@@ -73,7 +75,8 @@
                     <p>I am interested in this property because I live nearby and would be easy for me to shift</p>
                 </div>
             </div>
-            <div class="expand-info" v-show="detailedView">
+            <Details>
+            <div class="expand-info">
                 <label>Income</label>
                 <div class="income-details">
                     <p><strong>Source </strong>Part-Time Job</p>
@@ -86,6 +89,7 @@
                 <p><strong>Reference Contact </strong>0404786756</p>
                 <p><strong>Tenant History Proof </strong><i class="fa fa-file">Files </i></p>
             </div>
+            </Details>
         </div>
     </div>
 </template>

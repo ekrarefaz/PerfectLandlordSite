@@ -3,11 +3,11 @@
   <nav>
     <div class="box-shadow">
         <div class="section logo">
-            <router-link to="/"><span class="white">ThePerfect</span><span class="green">Landlord</span></router-link>
-          </div>
+          <router-link to="/"><span class="white">The</span><span class="highlight">Perfect</span><span class="white">Landlord</span></router-link>
+        </div>
       <div class="section">
         <ul>
-          <li><router-link to="/properties" class="active">Match with Properties</router-link></li>
+          <li><router-link to="./properties" class="active">Match with Properties</router-link></li>
             <li><router-link to="/saved-properties">My Collections</router-link></li>
             <li><router-link to="/tenant-profile">My Profile</router-link></li>
         </ul>
@@ -33,8 +33,8 @@
     width: 100vw;
     margin: 0;
   }
-  .green {
-    color: var(--green);
+  .highlight {
+    color: red;
   }
   
   .white {

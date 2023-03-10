@@ -4,14 +4,14 @@
         </section>
         <section class="text-section">
           <section class="section-absolute">
-            <h1 id="title-slide tenant-text-title" v-if="tenant">Discover your perfect <span class="highlight">abode</span></h1>
+            <h1 id="title-slide tenant-text-title" v-if="tenant">Discover your perfect <br> <span class="highlight">abode</span></h1>
             <p id="text-slide tenant-text" v-if="tenant">
                 Tenants can easily search our platform to find their ideal rental property, complete with detailed information, photos, and virtual tours. 
                 Once they've found the right property, they can schedule viewings and apply for their new home, all through our platform. 
                 We also conduct background checks to ensure that tenants meet our strict criteria for trustworthiness and reliability.
             </p>
 
-            <h1 id="title-slide tenant-text-title" v-if="!tenant">Discover your perfect <span class="highlight">tenant</span></h1>
+            <h1 id="title-slide tenant-text-title" v-if="!tenant">Discover your perfect <br> <span class="highlight">tenant</span></h1>
             <p id="text-slide tenant-text" v-if="!tenant">
                 Our platform offers landlords an effortless and cost-effective way to list their properties with complete confidence. 
                 Our expert team verifies all listings and conducts thorough inspections to ensure that every detail is accurate and true. 
@@ -23,7 +23,7 @@
               </button>
               <button id="next" @click="landlordActive">
                 Landlord
-              </button>
+              </button> 
             </section>
             <router-link to="/properties" v-if="tenant">
               Explore
@@ -410,13 +410,19 @@
   }
 }
 
+.controllers-section{
+  align-content: center;
+}
+
 .highlight{
     color: maroon;
     font-size: 1.2em;
+    text-align: center;
+    align-items: center;
 
 }
 .highlight:hover{
-    font-size: 1.2em;
+    font-size: 1.4em;
     transition: ease-in 0.3s;
 }
 
