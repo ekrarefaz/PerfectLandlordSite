@@ -1,29 +1,15 @@
 <template>
   <div class="tenant-container">
-    <div class="card">
+    <div class="card" v-for="tenant in tenants">
         <div class="cover-photo">
             <img src="@/assets/logo.png" class="profile">
         </div>
-        <h3 class="profile-name">Umpumphue</h3>
-        <p class="about">Tenant</p>
-        <button class="btn">Details</button>
+        <h3 class="profile-name">{{tenant.get_full_name}}</h3>
+        <p class="about">{{tenant.user.groups[0].name}}</p>
+        <router-link :to="{name: 'tenant-details', params:{name: tenant.get_full_name}}">
+          <button class="btn">Details</button>
+        </router-link>
     </div>
-    <div class="card">
-      <div class="cover-photo">
-          <img src="@/assets/logo.png" class="profile">
-      </div>
-      <h3 class="profile-name">James</h3>
-      <p class="about">Tenant</p>
-      <button class="btn">Details</button>
-  </div>
-  <div class="card">
-    <div class="cover-photo">
-        <img src="@/assets/logo.png" class="profile">
-    </div>
-    <h3 class="profile-name">Angelina</h3>
-    <p class="about">Tenant</p>
-    <button class="btn">Details</button>
-  </div>
 </div>
 </template>
 <style scoped>
@@ -36,18 +22,10 @@
   color: black ;
 }
 
-body {
-  background: #222;
-  height: 100vh;
-  display: grid;
-  place-items: center;
-  font-family: Montserrat;
-
-}
-
 .tenant-container{
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 .card {
   padding: 15px;
@@ -59,6 +37,7 @@ body {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.7);
   user-select: none;
   align-content: center;
+  margin: 30px;
 }
 
 .cover-photo {
@@ -160,7 +139,7 @@ export default {
 },
   mounted() {
     this.getTenants()
-    document.title = 'Tenants | The Perfect Landlord'
+    document.title = 'Tenant | The Perfect Landlord'
     localStorage.setItem("pageType", "landlord")
   },
   methods: {

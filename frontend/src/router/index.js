@@ -20,7 +20,8 @@ import LandlordInspections from '@/views/LandlordView/LandlordInspections.vue';
 import LandlordLogin from '@/views/LandlordView/LandlordLogin.vue';
 import TenantLogin from '@/views/TenantView/TenantLogin.vue';
 import LandlordSignup from '@/views/LandlordView/LandlordSignup.vue';
-import TenantSignup from '@/views/TenantView/TenantSignup.vue';
+import TenantSignup from '@/views/TenantView/TenantSignup.vue'; 
+import TenantDetails from '@/views/LandlordView/TenantDetails.vue'; 
 
 
 const routes = [
@@ -103,6 +104,17 @@ const routes = [
     // meta:{
     //   requiredLogin:true
     // }
+    props: true
+  },
+  {
+    path: '/tenant/:name',
+    // path: '/tenant-details',
+    name: 'tenant-details',
+    component: TenantDetails,
+    // meta:{
+    //   requiredLogin:true
+    // }
+    props: true
   },
   {
     path: '/tenant-profile',
