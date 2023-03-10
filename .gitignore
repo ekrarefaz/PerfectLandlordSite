@@ -1,0 +1,7 @@
+.idea
+db.sqlite3
+backend/static/
+nginx/html
+env
+
+*.pyc

@@ -67,6 +67,9 @@ export default {
             errors: []
         }
     },
+    mounted(){
+            localStorage.setItem("pageType", "common")
+    },
     methods: {
         submitForm() {
             this.errors = []
@@ -95,7 +98,7 @@ export default {
                 }
 
                 axios
-                    .post("/users/", formData)
+                    .post("v2/user/signup/", formData)
                     .then(response => {
                         toast({
                             message: 'Account created, please log in!',

@@ -1,28 +1,38 @@
 <template>
-  <Navbar/>
-  <div id="wrapper">
-    <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
-      <div class="lds-dual-ring"></div>
+  <DynamicLoaderNav/>
+  <body>
+    <div id="wrapper">
+      <div class="is-loading-bar has-text-centered" v-bind:class="{'is-loading': $store.state.isLoading }">
+        <div class="lds-dual-ring"></div>
+      </div>
+
+      <section class="section">
+        <router-view/>
+      </section>
     </div>
+  </body>
 
-    <section class="section">
-      <router-view/>
-    </section>
+  <footer class="footer">
+    <p class="has-text-centered">Copyright (c) 2023</p>
+  </footer>
 
-    <footer class="footer">
-      <p class="has-text-centered">Copyright (c) 2023</p>
-    </footer>
-  </div>
+
 </template>
 
 <script>
 import axios from 'axios'
-import Navbar from './components/LandingNavbar.vue'
+import DynamicLoaderNav from './components/Common/DynamicLoaderNav.vue';
+import LandingNavbar from './components/LandingNavbar.vue';
+import LandlordNav from './components/Landlord/LandlordNav.vue';
+import TenantNav from './components/Tenant/TenantNav.vue';
 
 export default {
     data() {
-        return {};
+        return {
+          pageType: 'common'
+        };
     },
+    components: { LandingNavbar, LandlordNav, TenantNav, DynamicLoaderNav },
     beforeCreate() {
         this.$store.commit("initialize");
         const token = this.$store.state.token;
@@ -31,13 +41,21 @@ export default {
         }
         else {
             axios.defaults.headers.common["Authorization"] = "";
-        }
+        }        
     },
-    components: { Navbar }
+    beforeMount(){
+      this.getPageType()
+    },
+    methods:{
+      getPageType(){
+        this.pageType = localStorage.getItem("pageType")
+      }
+    }
 }
 </script>
 
 <style lang="scss">
+
 @import '../node_modules/bulma';
 
 .lds-dual-ring {
@@ -76,4 +94,5 @@ export default {
     height: 80px;
   }
 }
+
 </style>
